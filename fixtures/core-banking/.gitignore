@@ -1,0 +1,5 @@
+generated/
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+__pycache__/

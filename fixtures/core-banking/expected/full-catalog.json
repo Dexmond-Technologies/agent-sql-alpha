@@ -1,0 +1,3664 @@
+{
+  "fixtureVersion": 1,
+  "schemaSha256": "3ab3a362567d54754222db02d700625020b671dca2d859ac2d06fe9212b65769",
+  "tables": [
+    {
+      "name": "account_holders",
+      "sql": "CREATE TABLE account_holders (\n    account_id TEXT NOT NULL REFERENCES accounts(account_id) ON DELETE CASCADE,\n    customer_id TEXT NOT NULL REFERENCES customers(customer_id) ON DELETE CASCADE,\n    holder_role TEXT NOT NULL CHECK (holder_role IN ('PRIMARY', 'JOINT', 'AUTHORIZED')),\n    ownership_percent INTEGER NOT NULL CHECK (ownership_percent BETWEEN 0 AND 100),\n    added_at TEXT NOT NULL,\n    PRIMARY KEY (account_id, customer_id)\n) STRICT, WITHOUT ROWID",
+      "columns": [
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 2,
+          "hidden": 0
+        },
+        {
+          "name": "holder_role",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "ownership_percent",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "added_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "account_id",
+        "customer_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "accounts",
+          "from": "account_id",
+          "to": "account_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_account_holders_customer",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 2,
+              "name": "holder_role",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 0,
+              "name": "account_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_account_holders_customer ON account_holders(customer_id, holder_role)"
+        },
+        {
+          "name": "sqlite_autoindex_account_holders_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "account_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 1,
+              "name": "customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 2,
+              "name": "holder_role",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 3,
+              "columnId": 3,
+              "name": "ownership_percent",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 4,
+              "columnId": 4,
+              "name": "added_at",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "account_products",
+      "sql": "CREATE TABLE account_products (\n    product_id INTEGER PRIMARY KEY,\n    product_code TEXT NOT NULL UNIQUE,\n    name TEXT NOT NULL,\n    product_type TEXT NOT NULL CHECK (product_type IN ('CURRENT', 'SAVINGS', 'CREDIT', 'ESCROW')),\n    default_currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    interest_rate_bps INTEGER NOT NULL DEFAULT 0,\n    minimum_balance_minor INTEGER NOT NULL DEFAULT 0,\n    monthly_fee_minor INTEGER NOT NULL DEFAULT 0,\n    is_active INTEGER NOT NULL DEFAULT 1 CHECK (is_active IN (0, 1))\n) STRICT",
+      "columns": [
+        {
+          "name": "product_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "product_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "product_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "default_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "interest_rate_bps",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "minimum_balance_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "monthly_fee_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_active",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "1",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "product_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "default_currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_account_products_1",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "product_code",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "accounts",
+      "sql": "CREATE TABLE accounts (\n    account_id TEXT PRIMARY KEY,\n    account_reference TEXT NOT NULL UNIQUE,\n    branch_id INTEGER NOT NULL REFERENCES branches(branch_id) ON DELETE RESTRICT,\n    product_id INTEGER NOT NULL REFERENCES account_products(product_id) ON DELETE RESTRICT,\n    currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    status TEXT NOT NULL CHECK (status IN ('ACTIVE', 'DORMANT', 'FROZEN', 'CLOSED')),\n    opened_at TEXT NOT NULL,\n    closed_at TEXT,\n    last_activity_at TEXT,\n    overdraft_limit_minor INTEGER NOT NULL DEFAULT 0 CHECK (overdraft_limit_minor >= 0),\n    external_reference TEXT,\n    account_label TEXT GENERATED ALWAYS AS (substr(account_reference, 1, 8) || '\u2026' || substr(account_reference, -4)) VIRTUAL,\n    updated_at TEXT NOT NULL,\n    CHECK ((status = 'CLOSED' AND closed_at IS NOT NULL) OR status <> 'CLOSED')\n) STRICT",
+      "columns": [
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "account_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "branch_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "product_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "opened_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "closed_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "last_activity_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "overdraft_limit_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "external_reference",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "account_label",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 2
+        },
+        {
+          "name": "updated_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "account_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "account_products",
+          "from": "product_id",
+          "to": "product_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "sequence": 0,
+          "table": "branches",
+          "from": "branch_id",
+          "to": "branch_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_accounts_branch_status",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 2,
+              "name": "branch_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 5,
+              "name": "status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 4,
+              "name": "currency_code",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 3,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_accounts_branch_status ON accounts(branch_id, status, currency_code)"
+        },
+        {
+          "name": "sqlite_autoindex_accounts_2",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "account_reference",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        },
+        {
+          "name": "sqlite_autoindex_accounts_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "account_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "aml_alert_transactions",
+      "sql": "CREATE TABLE aml_alert_transactions (\n    alert_id TEXT NOT NULL REFERENCES aml_alerts(alert_id) ON DELETE CASCADE,\n    transaction_id INTEGER NOT NULL REFERENCES ledger_transactions(transaction_id) ON DELETE CASCADE,\n    match_reason TEXT NOT NULL,\n    contribution_score INTEGER NOT NULL CHECK (contribution_score BETWEEN 0 AND 100),\n    PRIMARY KEY (alert_id, transaction_id)\n) STRICT, WITHOUT ROWID",
+      "columns": [
+        {
+          "name": "alert_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 2,
+          "hidden": 0
+        },
+        {
+          "name": "match_reason",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "contribution_score",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "alert_id",
+        "transaction_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "ledger_transactions",
+          "from": "transaction_id",
+          "to": "transaction_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "aml_alerts",
+          "from": "alert_id",
+          "to": "alert_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_aml_alert_transactions_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "alert_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 1,
+              "name": "transaction_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 2,
+              "name": "match_reason",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 3,
+              "columnId": 3,
+              "name": "contribution_score",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "aml_alerts",
+      "sql": "CREATE TABLE aml_alerts (\n    alert_id TEXT PRIMARY KEY,\n    customer_id TEXT REFERENCES customers(customer_id) ON DELETE SET NULL,\n    account_id TEXT REFERENCES accounts(account_id) ON DELETE SET NULL,\n    alert_type TEXT NOT NULL CHECK (alert_type IN ('STRUCTURING', 'RAPID_MOVEMENT', 'SANCTIONS', 'UNUSUAL_VALUE', 'NEW_BENEFICIARY')),\n    severity TEXT NOT NULL CHECK (severity IN ('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')),\n    alert_status TEXT NOT NULL CHECK (alert_status IN ('OPEN', 'INVESTIGATING', 'CLOSED', 'ESCALATED')),\n    score INTEGER NOT NULL CHECK (score BETWEEN 0 AND 100),\n    opened_at TEXT NOT NULL,\n    closed_at TEXT,\n    disposition TEXT,\n    rule_version TEXT NOT NULL\n) STRICT",
+      "columns": [
+        {
+          "name": "alert_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "alert_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "severity",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "alert_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "score",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "opened_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "closed_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "disposition",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "rule_version",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "alert_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "accounts",
+          "from": "account_id",
+          "to": "account_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_aml_alerts_work_queue",
+          "unique": false,
+          "origin": "c",
+          "partial": true,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 4,
+              "name": "severity",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 7,
+              "name": "opened_at",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_aml_alerts_work_queue ON aml_alerts(severity DESC, opened_at) WHERE alert_status IN ('OPEN', 'INVESTIGATING', 'ESCALATED')"
+        },
+        {
+          "name": "sqlite_autoindex_aml_alerts_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "alert_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "audit_events",
+      "sql": "CREATE TABLE audit_events (\n    audit_event_id INTEGER PRIMARY KEY,\n    entity_type TEXT NOT NULL,\n    entity_id TEXT NOT NULL,\n    action TEXT NOT NULL,\n    actor TEXT NOT NULL,\n    occurred_at TEXT NOT NULL,\n    changes_json TEXT NOT NULL,\n    correlation_id TEXT,\n    source_ip TEXT\n) STRICT",
+      "columns": [
+        {
+          "name": "audit_event_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "entity_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "entity_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "action",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "actor",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "occurred_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "changes_json",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "correlation_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "source_ip",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "audit_event_id"
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "ix_audit_entity_time",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "entity_type",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 2,
+              "name": "entity_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 5,
+              "name": "occurred_at",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 3,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_audit_entity_time ON audit_events(entity_type, entity_id, occurred_at DESC)"
+        }
+      ]
+    },
+    {
+      "name": "beneficiaries",
+      "sql": "CREATE TABLE beneficiaries (\n    beneficiary_id TEXT PRIMARY KEY,\n    owner_customer_id TEXT NOT NULL REFERENCES customers(customer_id) ON DELETE CASCADE,\n    nickname TEXT NOT NULL,\n    beneficiary_name TEXT NOT NULL,\n    destination_reference TEXT NOT NULL,\n    destination_country TEXT NOT NULL,\n    currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    created_at TEXT NOT NULL,\n    verified_at TEXT,\n    is_trusted INTEGER NOT NULL DEFAULT 0 CHECK (is_trusted IN (0, 1)),\n    UNIQUE (owner_customer_id, destination_reference)\n) STRICT",
+      "columns": [
+        {
+          "name": "beneficiary_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "owner_customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "nickname",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "beneficiary_name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "destination_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "destination_country",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "created_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "verified_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_trusted",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "beneficiary_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "customers",
+          "from": "owner_customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_beneficiaries_owner_created",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "owner_customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 7,
+              "name": "created_at",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_beneficiaries_owner_created ON beneficiaries(owner_customer_id, created_at DESC)"
+        },
+        {
+          "name": "sqlite_autoindex_beneficiaries_2",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "owner_customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 4,
+              "name": "destination_reference",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        },
+        {
+          "name": "sqlite_autoindex_beneficiaries_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "beneficiary_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "branches",
+      "sql": "CREATE TABLE branches (\n    branch_id INTEGER PRIMARY KEY,\n    branch_code TEXT NOT NULL UNIQUE,\n    name TEXT NOT NULL,\n    country_code TEXT NOT NULL CHECK (length(country_code) = 2),\n    opened_on TEXT NOT NULL,\n    is_active INTEGER NOT NULL DEFAULT 1 CHECK (is_active IN (0, 1))\n) STRICT",
+      "columns": [
+        {
+          "name": "branch_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "branch_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "country_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "opened_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_active",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "1",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "branch_id"
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_branches_1",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "branch_code",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "card_authorizations",
+      "sql": "CREATE TABLE card_authorizations (\n    authorization_id TEXT PRIMARY KEY,\n    card_id TEXT NOT NULL REFERENCES cards(card_id) ON DELETE CASCADE,\n    merchant_id TEXT NOT NULL REFERENCES merchants(merchant_id) ON DELETE RESTRICT,\n    transaction_id INTEGER REFERENCES ledger_transactions(transaction_id) ON DELETE SET NULL,\n    amount_minor INTEGER NOT NULL CHECK (amount_minor > 0),\n    currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    decision TEXT NOT NULL CHECK (decision IN ('APPROVED', 'DECLINED', 'REFERRED')),\n    response_code TEXT NOT NULL,\n    authorized_at TEXT NOT NULL,\n    device_fingerprint BLOB,\n    is_card_present INTEGER NOT NULL CHECK (is_card_present IN (0, 1))\n) STRICT",
+      "columns": [
+        {
+          "name": "authorization_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "card_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "merchant_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "decision",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "response_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "authorized_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "device_fingerprint",
+          "dataType": "BLOB",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_card_present",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "authorization_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "ledger_transactions",
+          "from": "transaction_id",
+          "to": "transaction_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "sequence": 0,
+          "table": "merchants",
+          "from": "merchant_id",
+          "to": "merchant_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 3,
+          "sequence": 0,
+          "table": "cards",
+          "from": "card_id",
+          "to": "card_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_authorizations_card_time",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "card_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 8,
+              "name": "authorized_at",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_authorizations_card_time ON card_authorizations(card_id, authorized_at DESC)"
+        },
+        {
+          "name": "sqlite_autoindex_card_authorizations_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "authorization_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "cards",
+      "sql": "CREATE TABLE cards (\n    card_id TEXT PRIMARY KEY,\n    account_id TEXT NOT NULL REFERENCES accounts(account_id) ON DELETE CASCADE,\n    customer_id TEXT NOT NULL REFERENCES customers(customer_id) ON DELETE RESTRICT,\n    card_token TEXT NOT NULL UNIQUE,\n    last_four TEXT NOT NULL CHECK (length(last_four) = 4),\n    card_type TEXT NOT NULL CHECK (card_type IN ('DEBIT', 'CREDIT', 'VIRTUAL')),\n    status TEXT NOT NULL CHECK (status IN ('ACTIVE', 'BLOCKED', 'EXPIRED', 'CANCELLED')),\n    issued_at TEXT NOT NULL,\n    expires_on TEXT NOT NULL,\n    spending_limit_minor INTEGER NOT NULL CHECK (spending_limit_minor > 0)\n) STRICT",
+      "columns": [
+        {
+          "name": "card_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "card_token",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "last_four",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "card_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "issued_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "expires_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "spending_limit_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "card_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "accounts",
+          "from": "account_id",
+          "to": "account_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_cards_account_status",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "account_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 6,
+              "name": "status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_cards_account_status ON cards(account_id, status)"
+        },
+        {
+          "name": "sqlite_autoindex_cards_2",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 3,
+              "name": "card_token",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        },
+        {
+          "name": "sqlite_autoindex_cards_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "card_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "currencies",
+      "sql": "CREATE TABLE currencies (\n    currency_code TEXT PRIMARY KEY,\n    name TEXT NOT NULL,\n    minor_unit INTEGER NOT NULL CHECK (minor_unit BETWEEN 0 AND 4),\n    is_active INTEGER NOT NULL DEFAULT 1 CHECK (is_active IN (0, 1))\n) STRICT, WITHOUT ROWID",
+      "columns": [
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "minor_unit",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_active",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "1",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "currency_code"
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_currencies_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "currency_code",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 1,
+              "name": "name",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 2,
+              "columnId": 2,
+              "name": "minor_unit",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 3,
+              "columnId": 3,
+              "name": "is_active",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "customer_addresses",
+      "sql": "CREATE TABLE customer_addresses (\n    address_id INTEGER PRIMARY KEY,\n    customer_id TEXT NOT NULL REFERENCES customers(customer_id) ON DELETE CASCADE,\n    address_type TEXT NOT NULL CHECK (address_type IN ('HOME', 'BUSINESS', 'MAILING')),\n    line_1 TEXT NOT NULL,\n    line_2 TEXT,\n    city TEXT NOT NULL,\n    postal_code TEXT NOT NULL,\n    country_code TEXT NOT NULL CHECK (length(country_code) = 2),\n    valid_from TEXT NOT NULL,\n    valid_to TEXT,\n    is_primary INTEGER NOT NULL DEFAULT 0 CHECK (is_primary IN (0, 1)),\n    CHECK (valid_to IS NULL OR valid_to >= valid_from)\n) STRICT",
+      "columns": [
+        {
+          "name": "address_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "address_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "line_1",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "line_2",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "city",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "postal_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "country_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "valid_from",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "valid_to",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_primary",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "address_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ux_customer_primary_address",
+          "unique": true,
+          "origin": "c",
+          "partial": true,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE UNIQUE INDEX ux_customer_primary_address\n    ON customer_addresses(customer_id) WHERE is_primary = 1 AND valid_to IS NULL"
+        }
+      ]
+    },
+    {
+      "name": "customers",
+      "sql": "CREATE TABLE customers (\n    customer_id TEXT PRIMARY KEY,\n    customer_type TEXT NOT NULL CHECK (customer_type IN ('INDIVIDUAL', 'BUSINESS')),\n    given_name TEXT,\n    family_name TEXT,\n    legal_name TEXT,\n    display_name TEXT GENERATED ALWAYS AS (\n        CASE WHEN customer_type = 'BUSINESS' THEN legal_name\n             ELSE trim(coalesce(given_name, '') || ' ' || coalesce(family_name, '')) END\n    ) STORED,\n    email TEXT NOT NULL UNIQUE,\n    phone TEXT,\n    risk_rating TEXT NOT NULL CHECK (risk_rating IN ('LOW', 'MEDIUM', 'HIGH')),\n    tax_residency_country TEXT NOT NULL,\n    status TEXT NOT NULL CHECK (status IN ('ACTIVE', 'REVIEW', 'CLOSED')),\n    created_at TEXT NOT NULL,\n    CHECK (\n        (customer_type = 'BUSINESS' AND legal_name IS NOT NULL) OR\n        (customer_type = 'INDIVIDUAL' AND given_name IS NOT NULL AND family_name IS NOT NULL)\n    )\n) STRICT",
+      "columns": [
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "customer_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "given_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "family_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "legal_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "display_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 3
+        },
+        {
+          "name": "email",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "phone",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "risk_rating",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "tax_residency_country",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "created_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "customer_id"
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "ix_customer_email_domain",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": -2,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_customer_email_domain ON customers(substr(email, instr(email, '@') + 1))"
+        },
+        {
+          "name": "ix_customers_risk_status",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 8,
+              "name": "risk_rating",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 10,
+              "name": "status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 11,
+              "name": "created_at",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 3,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_customers_risk_status ON customers(risk_rating, status, created_at)"
+        },
+        {
+          "name": "sqlite_autoindex_customers_2",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 6,
+              "name": "email",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        },
+        {
+          "name": "sqlite_autoindex_customers_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "fx_rates",
+      "sql": "CREATE TABLE fx_rates (\n    base_currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE CASCADE,\n    quote_currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE CASCADE,\n    rate_date TEXT NOT NULL,\n    rate_micros INTEGER NOT NULL CHECK (rate_micros > 0),\n    source TEXT NOT NULL,\n    PRIMARY KEY (base_currency_code, quote_currency_code, rate_date),\n    CHECK (base_currency_code <> quote_currency_code)\n) STRICT, WITHOUT ROWID",
+      "columns": [
+        {
+          "name": "base_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "quote_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 2,
+          "hidden": 0
+        },
+        {
+          "name": "rate_date",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 3,
+          "hidden": 0
+        },
+        {
+          "name": "rate_micros",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "source",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "base_currency_code",
+        "quote_currency_code",
+        "rate_date"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "quote_currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "base_currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_fx_rates_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "base_currency_code",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 1,
+              "name": "quote_currency_code",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 2,
+              "name": "rate_date",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 3,
+              "columnId": 3,
+              "name": "rate_micros",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 4,
+              "columnId": 4,
+              "name": "source",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "journal_batches",
+      "sql": "CREATE TABLE journal_batches (\n    batch_id INTEGER PRIMARY KEY,\n    batch_reference TEXT NOT NULL UNIQUE,\n    business_date TEXT NOT NULL,\n    source_system TEXT NOT NULL,\n    status TEXT NOT NULL CHECK (status IN ('OPEN', 'POSTED', 'REVERSED')),\n    posted_at TEXT,\n    created_at TEXT NOT NULL\n) STRICT",
+      "columns": [
+        {
+          "name": "batch_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "batch_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "business_date",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "source_system",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "posted_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "created_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "batch_id"
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_journal_batches_1",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "batch_reference",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "kyc_cases",
+      "sql": "CREATE TABLE kyc_cases (\n    kyc_case_id TEXT PRIMARY KEY,\n    customer_id TEXT NOT NULL REFERENCES customers(customer_id) ON DELETE CASCADE,\n    case_status TEXT NOT NULL CHECK (case_status IN ('PENDING', 'APPROVED', 'REJECTED', 'EXPIRED')),\n    risk_score INTEGER NOT NULL CHECK (risk_score BETWEEN 0 AND 100),\n    verification_reference TEXT NOT NULL UNIQUE,\n    opened_at TEXT NOT NULL,\n    reviewed_at TEXT,\n    reviewer TEXT,\n    notes TEXT\n) STRICT",
+      "columns": [
+        {
+          "name": "kyc_case_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "case_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "risk_score",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "verification_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "opened_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "reviewed_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "reviewer",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "notes",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "kyc_case_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_kyc_cases_2",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 4,
+              "name": "verification_reference",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        },
+        {
+          "name": "sqlite_autoindex_kyc_cases_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "kyc_case_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "ledger_entries",
+      "sql": "CREATE TABLE ledger_entries (\n    entry_id INTEGER PRIMARY KEY,\n    transaction_id INTEGER NOT NULL REFERENCES ledger_transactions(transaction_id) ON DELETE RESTRICT,\n    account_id TEXT NOT NULL REFERENCES accounts(account_id) ON DELETE RESTRICT,\n    amount_minor INTEGER NOT NULL CHECK (amount_minor <> 0),\n    entry_side TEXT GENERATED ALWAYS AS (CASE WHEN amount_minor < 0 THEN 'DEBIT' ELSE 'CREDIT' END) STORED,\n    running_sequence INTEGER NOT NULL CHECK (running_sequence > 0),\n    posted_at TEXT NOT NULL,\n    integrity_hash BLOB NOT NULL,\n    UNIQUE (transaction_id, running_sequence)\n) STRICT",
+      "columns": [
+        {
+          "name": "entry_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "entry_side",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 3
+        },
+        {
+          "name": "running_sequence",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "posted_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "integrity_hash",
+          "dataType": "BLOB",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "entry_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "accounts",
+          "from": "account_id",
+          "to": "account_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "ledger_transactions",
+          "from": "transaction_id",
+          "to": "transaction_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_ledger_entries_transaction",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "transaction_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 5,
+              "name": "running_sequence",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_ledger_entries_transaction ON ledger_entries(transaction_id, running_sequence)"
+        },
+        {
+          "name": "ix_ledger_entries_account_posted",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 2,
+              "name": "account_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 6,
+              "name": "posted_at",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 0,
+              "name": "entry_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 3,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_ledger_entries_account_posted ON ledger_entries(account_id, posted_at DESC, entry_id)"
+        },
+        {
+          "name": "sqlite_autoindex_ledger_entries_1",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "transaction_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 5,
+              "name": "running_sequence",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "ledger_transactions",
+      "sql": "CREATE TABLE ledger_transactions (\n    transaction_id INTEGER PRIMARY KEY,\n    batch_id INTEGER NOT NULL REFERENCES journal_batches(batch_id) ON DELETE RESTRICT,\n    transaction_reference TEXT NOT NULL UNIQUE,\n    transaction_type TEXT NOT NULL CHECK (transaction_type IN ('TRANSFER', 'CARD', 'FEE', 'INTEREST', 'LOAN', 'REVERSAL')),\n    currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    amount_minor INTEGER NOT NULL CHECK (amount_minor > 0),\n    booked_at TEXT NOT NULL,\n    value_date TEXT NOT NULL,\n    description TEXT NOT NULL,\n    status TEXT NOT NULL CHECK (status IN ('PENDING', 'POSTED', 'REVERSED', 'DECLINED')),\n    channel TEXT NOT NULL CHECK (channel IN ('MOBILE', 'WEB', 'BRANCH', 'CARD', 'BATCH')),\n    is_cross_border INTEGER NOT NULL DEFAULT 0 CHECK (is_cross_border IN (0, 1)),\n    reversal_of_id INTEGER REFERENCES ledger_transactions(transaction_id) ON DELETE SET NULL,\n    metadata_json TEXT NOT NULL DEFAULT '{}'\n) STRICT",
+      "columns": [
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "batch_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "transaction_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "transaction_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "booked_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "value_date",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "description",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "channel",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "is_cross_border",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "reversal_of_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "metadata_json",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": "'{}'",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "transaction_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "ledger_transactions",
+          "from": "reversal_of_id",
+          "to": "transaction_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "sequence": 0,
+          "table": "journal_batches",
+          "from": "batch_id",
+          "to": "batch_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_transactions_reversal",
+          "unique": false,
+          "origin": "c",
+          "partial": true,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 12,
+              "name": "reversal_of_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_transactions_reversal ON ledger_transactions(reversal_of_id) WHERE reversal_of_id IS NOT NULL"
+        },
+        {
+          "name": "ix_transactions_booked_type",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 6,
+              "name": "booked_at",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 3,
+              "name": "transaction_type",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 9,
+              "name": "status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 3,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_transactions_booked_type ON ledger_transactions(booked_at DESC, transaction_type, status)"
+        },
+        {
+          "name": "sqlite_autoindex_ledger_transactions_1",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 2,
+              "name": "transaction_reference",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "loan_installments",
+      "sql": "CREATE TABLE loan_installments (\n    loan_id TEXT NOT NULL REFERENCES loans(loan_id) ON DELETE CASCADE,\n    installment_number INTEGER NOT NULL CHECK (installment_number > 0),\n    due_on TEXT NOT NULL,\n    principal_due_minor INTEGER NOT NULL CHECK (principal_due_minor >= 0),\n    interest_due_minor INTEGER NOT NULL CHECK (interest_due_minor >= 0),\n    paid_minor INTEGER NOT NULL DEFAULT 0 CHECK (paid_minor >= 0),\n    paid_at TEXT,\n    installment_status TEXT NOT NULL CHECK (installment_status IN ('DUE', 'PAID', 'LATE', 'WAIVED')),\n    PRIMARY KEY (loan_id, installment_number)\n) STRICT, WITHOUT ROWID",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "installment_number",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 2,
+          "hidden": 0
+        },
+        {
+          "name": "due_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "principal_due_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "interest_due_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "paid_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "paid_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "installment_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "loan_id",
+        "installment_number"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "loans",
+          "from": "loan_id",
+          "to": "loan_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_installments_status_due",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 7,
+              "name": "installment_status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 2,
+              "name": "due_on",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 0,
+              "name": "loan_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 3,
+              "columnId": 1,
+              "name": "installment_number",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_installments_status_due ON loan_installments(installment_status, due_on)"
+        },
+        {
+          "name": "sqlite_autoindex_loan_installments_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "loan_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 1,
+              "name": "installment_number",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": 2,
+              "name": "due_on",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 3,
+              "columnId": 3,
+              "name": "principal_due_minor",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 4,
+              "columnId": 4,
+              "name": "interest_due_minor",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 5,
+              "columnId": 5,
+              "name": "paid_minor",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 6,
+              "columnId": 6,
+              "name": "paid_at",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            },
+            {
+              "sequence": 7,
+              "columnId": 7,
+              "name": "installment_status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "loans",
+      "sql": "CREATE TABLE loans (\n    loan_id TEXT PRIMARY KEY,\n    customer_id TEXT NOT NULL REFERENCES customers(customer_id) ON DELETE RESTRICT,\n    disbursement_account_id TEXT NOT NULL REFERENCES accounts(account_id) ON DELETE RESTRICT,\n    principal_minor INTEGER NOT NULL CHECK (principal_minor > 0),\n    currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    annual_rate_bps INTEGER NOT NULL CHECK (annual_rate_bps BETWEEN 0 AND 10000),\n    term_months INTEGER NOT NULL CHECK (term_months BETWEEN 1 AND 360),\n    originated_on TEXT NOT NULL,\n    maturity_on TEXT NOT NULL,\n    status TEXT NOT NULL CHECK (status IN ('CURRENT', 'DELINQUENT', 'PAID', 'CHARGED_OFF')),\n    collateral_json TEXT\n) STRICT",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "disbursement_account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "principal_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "annual_rate_bps",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "term_months",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "originated_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "maturity_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "collateral_json",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "loan_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "accounts",
+          "from": "disbursement_account_id",
+          "to": "account_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "sequence": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_loans_customer_status",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 1,
+              "name": "customer_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 9,
+              "name": "status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_loans_customer_status ON loans(customer_id, status)"
+        },
+        {
+          "name": "sqlite_autoindex_loans_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "loan_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "merchants",
+      "sql": "CREATE TABLE merchants (\n    merchant_id TEXT PRIMARY KEY,\n    merchant_name TEXT NOT NULL,\n    merchant_category_code TEXT NOT NULL CHECK (length(merchant_category_code) = 4),\n    country_code TEXT NOT NULL,\n    risk_tier INTEGER NOT NULL CHECK (risk_tier BETWEEN 1 AND 5),\n    created_at TEXT NOT NULL\n) STRICT",
+      "columns": [
+        {
+          "name": "merchant_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "merchant_name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "merchant_category_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "country_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "risk_tier",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "created_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "merchant_id"
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "name": "sqlite_autoindex_merchants_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "merchant_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    },
+    {
+      "name": "payment_instructions",
+      "sql": "CREATE TABLE payment_instructions (\n    payment_id TEXT PRIMARY KEY,\n    source_account_id TEXT NOT NULL REFERENCES accounts(account_id) ON DELETE RESTRICT,\n    beneficiary_id TEXT REFERENCES beneficiaries(beneficiary_id) ON DELETE SET NULL,\n    transaction_id INTEGER UNIQUE REFERENCES ledger_transactions(transaction_id) ON DELETE SET NULL,\n    requested_amount_minor INTEGER NOT NULL CHECK (requested_amount_minor > 0),\n    requested_currency_code TEXT NOT NULL REFERENCES currencies(currency_code) ON DELETE RESTRICT,\n    payment_method TEXT NOT NULL CHECK (payment_method IN ('FASTER_PAYMENT', 'SEPA', 'SWIFT', 'INTERNAL')),\n    payment_status TEXT NOT NULL CHECK (payment_status IN ('SCHEDULED', 'PROCESSING', 'SETTLED', 'FAILED', 'CANCELLED')),\n    requested_at TEXT NOT NULL,\n    settled_at TEXT,\n    failure_reason TEXT\n) STRICT",
+      "columns": [
+        {
+          "name": "payment_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": 1,
+          "hidden": 0
+        },
+        {
+          "name": "source_account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "beneficiary_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "requested_amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "requested_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "payment_method",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "payment_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "requested_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "settled_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        },
+        {
+          "name": "failure_reason",
+          "dataType": "TEXT",
+          "nullable": true,
+          "default": null,
+          "primaryKeyOrder": null,
+          "hidden": 0
+        }
+      ],
+      "primaryKey": [
+        "payment_id"
+      ],
+      "foreignKeys": [
+        {
+          "id": 0,
+          "sequence": 0,
+          "table": "currencies",
+          "from": "requested_currency_code",
+          "to": "currency_code",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "sequence": 0,
+          "table": "ledger_transactions",
+          "from": "transaction_id",
+          "to": "transaction_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "sequence": 0,
+          "table": "beneficiaries",
+          "from": "beneficiary_id",
+          "to": "beneficiary_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "SET NULL",
+          "match": "NONE"
+        },
+        {
+          "id": 3,
+          "sequence": 0,
+          "table": "accounts",
+          "from": "source_account_id",
+          "to": "account_id",
+          "onUpdate": "NO ACTION",
+          "onDelete": "RESTRICT",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "ix_payments_status_requested",
+          "unique": false,
+          "origin": "c",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 7,
+              "name": "payment_status",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": 8,
+              "name": "requested_at",
+              "descending": true,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 2,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": "CREATE INDEX ix_payments_status_requested ON payment_instructions(payment_status, requested_at DESC)"
+        },
+        {
+          "name": "sqlite_autoindex_payment_instructions_2",
+          "unique": true,
+          "origin": "u",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 3,
+              "name": "transaction_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        },
+        {
+          "name": "sqlite_autoindex_payment_instructions_1",
+          "unique": true,
+          "origin": "pk",
+          "partial": false,
+          "columns": [
+            {
+              "sequence": 0,
+              "columnId": 0,
+              "name": "payment_id",
+              "descending": false,
+              "collation": "BINARY",
+              "key": true
+            },
+            {
+              "sequence": 1,
+              "columnId": -1,
+              "name": null,
+              "descending": false,
+              "collation": "BINARY",
+              "key": false
+            }
+          ],
+          "sql": null
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "name": "v_account_balances",
+      "sql": "CREATE VIEW v_account_balances AS\nSELECT a.account_id,\n       a.account_reference,\n       a.currency_code,\n       a.status,\n       coalesce(sum(le.amount_minor), 0) AS balance_minor,\n       max(le.posted_at) AS last_posted_at\nFROM accounts a\nLEFT JOIN ledger_entries le ON le.account_id = a.account_id\nGROUP BY a.account_id, a.account_reference, a.currency_code, a.status",
+      "columns": [
+        "account_id",
+        "account_reference",
+        "currency_code",
+        "status",
+        "balance_minor",
+        "last_posted_at"
+      ]
+    },
+    {
+      "name": "v_customer_account_summary",
+      "sql": "CREATE VIEW v_customer_account_summary AS\nSELECT c.customer_id,\n       c.display_name,\n       c.risk_rating,\n       count(DISTINCT ah.account_id) AS account_count,\n       coalesce(sum(CASE WHEN ah.holder_role = 'PRIMARY' THEN b.balance_minor ELSE 0 END), 0) AS primary_balance_minor,\n       max(b.last_posted_at) AS last_activity_at\nFROM customers c\nLEFT JOIN account_holders ah ON ah.customer_id = c.customer_id\nLEFT JOIN v_account_balances b ON b.account_id = ah.account_id\nGROUP BY c.customer_id, c.display_name, c.risk_rating",
+      "columns": [
+        "customer_id",
+        "display_name",
+        "risk_rating",
+        "account_count",
+        "primary_balance_minor",
+        "last_activity_at"
+      ]
+    },
+    {
+      "name": "v_loan_arrears",
+      "sql": "CREATE VIEW v_loan_arrears AS\nSELECT l.loan_id,\n       l.customer_id,\n       c.display_name,\n       l.disbursement_account_id,\n       a.branch_id,\n       l.currency_code,\n       count(*) FILTER (WHERE li.installment_status = 'LATE') AS late_installment_count,\n       coalesce(sum(CASE WHEN li.installment_status = 'LATE'\n                         THEN li.principal_due_minor + li.interest_due_minor - li.paid_minor\n                         ELSE 0 END), 0) AS arrears_minor,\n       min(CASE WHEN li.installment_status = 'LATE' THEN li.due_on END) AS oldest_late_due_on\nFROM loans l\nJOIN customers c ON c.customer_id = l.customer_id\nJOIN accounts a ON a.account_id = l.disbursement_account_id\nJOIN loan_installments li ON li.loan_id = l.loan_id\nGROUP BY l.loan_id, l.customer_id, c.display_name,\n         l.disbursement_account_id, a.branch_id, l.currency_code",
+      "columns": [
+        "loan_id",
+        "customer_id",
+        "display_name",
+        "disbursement_account_id",
+        "branch_id",
+        "currency_code",
+        "late_installment_count",
+        "arrears_minor",
+        "oldest_late_due_on"
+      ]
+    },
+    {
+      "name": "v_monthly_cash_flow",
+      "sql": "CREATE VIEW v_monthly_cash_flow AS\nWITH monthly AS (\n    SELECT account_id,\n           substr(posted_at, 1, 7) AS posting_month,\n           sum(CASE WHEN amount_minor > 0 THEN amount_minor ELSE 0 END) AS inflow_minor,\n           -sum(CASE WHEN amount_minor < 0 THEN amount_minor ELSE 0 END) AS outflow_minor\n    FROM ledger_entries\n    GROUP BY account_id, substr(posted_at, 1, 7)\n)\nSELECT account_id,\n       posting_month,\n       inflow_minor,\n       outflow_minor,\n       inflow_minor - outflow_minor AS net_flow_minor,\n       lag(inflow_minor - outflow_minor) OVER (PARTITION BY account_id ORDER BY posting_month) AS previous_month_net_minor\nFROM monthly",
+      "columns": [
+        "account_id",
+        "posting_month",
+        "inflow_minor",
+        "outflow_minor",
+        "net_flow_minor",
+        "previous_month_net_minor"
+      ]
+    },
+    {
+      "name": "v_open_aml_alerts",
+      "sql": "CREATE VIEW v_open_aml_alerts AS\nSELECT aa.alert_id,\n       aa.severity,\n       aa.alert_status,\n       aa.alert_type,\n       aa.customer_id,\n       c.display_name,\n       aa.account_id,\n       aa.score,\n       aa.opened_at,\n       count(aat.transaction_id) AS matched_transaction_count,\n       coalesce(sum(lt.amount_minor), 0) AS matched_amount_minor\nFROM aml_alerts aa\nLEFT JOIN customers c ON c.customer_id = aa.customer_id\nLEFT JOIN aml_alert_transactions aat ON aat.alert_id = aa.alert_id\nLEFT JOIN ledger_transactions lt ON lt.transaction_id = aat.transaction_id\nWHERE aa.alert_status IN ('OPEN', 'INVESTIGATING', 'ESCALATED')\nGROUP BY aa.alert_id, aa.severity, aa.alert_status, aa.alert_type,\n         aa.customer_id, c.display_name, aa.account_id, aa.score, aa.opened_at",
+      "columns": [
+        "alert_id",
+        "severity",
+        "alert_status",
+        "alert_type",
+        "customer_id",
+        "display_name",
+        "account_id",
+        "score",
+        "opened_at",
+        "matched_transaction_count",
+        "matched_amount_minor"
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "name": "trg_accounts_status_audit",
+      "table": "accounts",
+      "sql": "CREATE TRIGGER trg_accounts_status_audit\nAFTER UPDATE OF status ON accounts\nWHEN OLD.status <> NEW.status\nBEGIN\n    INSERT INTO audit_events(entity_type, entity_id, action, actor, occurred_at, changes_json, correlation_id, source_ip)\n    VALUES ('ACCOUNT', NEW.account_id, 'STATUS_CHANGED', 'fixture-trigger',\n            strftime('%Y-%m-%dT%H:%M:%SZ', 'now'),\n            json_object('old', OLD.status, 'new', NEW.status), NULL, NULL);\nEND"
+    },
+    {
+      "name": "trg_accounts_touch_updated_at",
+      "table": "accounts",
+      "sql": "CREATE TRIGGER trg_accounts_touch_updated_at\nAFTER UPDATE OF status, branch_id, product_id ON accounts\nBEGIN\n    UPDATE accounts SET updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now')\n    WHERE account_id = NEW.account_id;\nEND"
+    },
+    {
+      "name": "trg_ledger_entries_immutable_delete",
+      "table": "ledger_entries",
+      "sql": "CREATE TRIGGER trg_ledger_entries_immutable_delete\nBEFORE DELETE ON ledger_entries\nBEGIN\n    SELECT RAISE(ABORT, 'posted ledger entries are immutable');\nEND"
+    },
+    {
+      "name": "trg_ledger_entries_immutable_update",
+      "table": "ledger_entries",
+      "sql": "CREATE TRIGGER trg_ledger_entries_immutable_update\nBEFORE UPDATE ON ledger_entries\nBEGIN\n    SELECT RAISE(ABORT, 'posted ledger entries are immutable');\nEND"
+    }
+  ]
+}

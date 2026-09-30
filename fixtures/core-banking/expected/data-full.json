@@ -1,0 +1,95 @@
+{
+  "fixtureVersion": 1,
+  "profile": "full",
+  "seed": 20260922,
+  "tables": {
+    "account_holders": {
+      "rows": 22000,
+      "sha256": "7648d3cc6706c25592bd5fd3ab0e823051686bebeca470c4c310ec48fd512390"
+    },
+    "account_products": {
+      "rows": 6,
+      "sha256": "ad350337ff5198de5e73d770b72b653724a63a655bed8b0ca64791903b765136"
+    },
+    "accounts": {
+      "rows": 20000,
+      "sha256": "3c492f691f81396c3064889de1ce335da7a7293e9e34ee5db90675f103c6d38b"
+    },
+    "aml_alert_transactions": {
+      "rows": 600,
+      "sha256": "5f1c36eea5855ab7073ce4d7f9e8a425e630c6a72f89f2b23016d020eb999a58"
+    },
+    "aml_alerts": {
+      "rows": 200,
+      "sha256": "1c881aa07ef50bf850ad03c0bfa5831cd1e1af8a4ffd0104c2bff63e244dad84"
+    },
+    "audit_events": {
+      "rows": 2000,
+      "sha256": "903a4230b73558aad28f044dfaf11b2879d775df0556788ec41a9f8ca16c4645"
+    },
+    "beneficiaries": {
+      "rows": 3333,
+      "sha256": "c6f5559d3ad096560185086d5aadd44d6a8a29bbf00aee6ba080446ecd744be6"
+    },
+    "branches": {
+      "rows": 12,
+      "sha256": "9d9b6cfd6101b55eb01b41243246d8c5f3932164dc904deba87c9c086d14e78f"
+    },
+    "card_authorizations": {
+      "rows": 13100,
+      "sha256": "44a2cd2e0ec39453e9c59e93b70461cb3cd8c661b888e882478637d1613984ea"
+    },
+    "cards": {
+      "rows": 6550,
+      "sha256": "ea30d062565673c6cea5870513bd9cad649b4acb28ecb50b3b3ec158cb960cde"
+    },
+    "currencies": {
+      "rows": 5,
+      "sha256": "807e0a05e4d181de249d4cc489607c2869e31d260c0a26e272705c17eb543bad"
+    },
+    "customer_addresses": {
+      "rows": 10000,
+      "sha256": "86d01a6440b2ded90d1d0e6ea3cb8f76209b8624a7d3478ae4ac691d46da58ea"
+    },
+    "customers": {
+      "rows": 10000,
+      "sha256": "2439b5f9b833675f77f69944ba530fafc4d21590322826c53a77215d097b9ff4"
+    },
+    "fx_rates": {
+      "rows": 120,
+      "sha256": "d5fe72ac753f6f2b85a55b512b20b4067d41373287d178b85b7fd829990ad105"
+    },
+    "journal_batches": {
+      "rows": 24,
+      "sha256": "6e4f88f22085717e5b23a294f302fb1f3923b63b522f4073e0d5a1510970d913"
+    },
+    "kyc_cases": {
+      "rows": 10000,
+      "sha256": "16efa3f3d9dbf3b78e3d722d6c4df9ec3c4f63d35bea0cf762a3be12136eda9f"
+    },
+    "ledger_entries": {
+      "rows": 250000,
+      "sha256": "1230aa4cfa72cf2becd527bdfe247cfc47d3a51065e07551958ff1771c39122f"
+    },
+    "ledger_transactions": {
+      "rows": 125000,
+      "sha256": "230ddf248dfcf25e9c86ecbf9a79f13c61cc9de857bff9b183cf23bde3a39b4c"
+    },
+    "loan_installments": {
+      "rows": 12000,
+      "sha256": "01b4addcf69a3eae11a903c2392a67c8f632f9e3fbc3b77fcb018325c97061ae"
+    },
+    "loans": {
+      "rows": 1000,
+      "sha256": "de6b3f1956b97bb079e6fee0e4af1972b95d8b41b23c50d002bb881318fd19af"
+    },
+    "merchants": {
+      "rows": 500,
+      "sha256": "f24a5f2fd23a6bf3c9c051f62fb90bfbfabe8ac51c44736d71c54cc9df6d61f9"
+    },
+    "payment_instructions": {
+      "rows": 31250,
+      "sha256": "946bcec2a50e1f87fba8714666b761daee831afcbc59080c90d116566697f664"
+    }
+  }
+}

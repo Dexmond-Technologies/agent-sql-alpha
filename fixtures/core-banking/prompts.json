@@ -1,0 +1,14 @@
+[
+  {"prompt":"Show the 10 customers with the largest absolute total balance, including their risk rating.","expectedObjects":["customers","account_holders","v_account_balances"]},
+  {"prompt":"Compare monthly inflows and outflows with the previous month for each active account.","expectedObjects":["v_monthly_cash_flow","accounts"]},
+  {"prompt":"Which joint accounts have ownership percentages that do not add up to 100?","expectedObjects":["account_holders"]},
+  {"prompt":"Convert the latest GBP balances to EUR using the most recent available fixture rate.","expectedObjects":["v_account_balances","fx_rates"]},
+  {"prompt":"Summarize overdue loan exposure by branch and currency.","expectedObjects":["v_loan_arrears","branches"]},
+  {"prompt":"List open critical AML alerts with their linked transaction count and total value.","expectedObjects":["v_open_aml_alerts"]},
+  {"prompt":"Find every reversal and show the original transaction beside it.","expectedObjects":["ledger_transactions"]},
+  {"prompt":"Rank branches by the number of active accounts and total balance.","expectedObjects":["branches","accounts","v_account_balances"]},
+  {"prompt":"Find accounts with three rapid outbound transfers within one day.","expectedObjects":["ledger_entries","ledger_transactions"]},
+  {"prompt":"Show high-risk customers who added an untrusted beneficiary shortly before a cross-border payment.","expectedObjects":["customers","beneficiaries","payment_instructions","ledger_transactions","account_holders"]},
+  {"prompt":"Compare approved and declined card authorization rates by merchant risk tier.","expectedObjects":["card_authorizations","merchants"]},
+  {"prompt":"Find dormant accounts that still have ledger activity after their recorded last activity date.","expectedObjects":["accounts","ledger_entries"]}
+]

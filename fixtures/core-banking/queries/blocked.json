@@ -1,0 +1,12 @@
+[
+  {"name":"insert","sql":"INSERT INTO branches(branch_id, branch_code, name, country_code, opened_on) VALUES (99, 'BAD', 'Blocked', 'GB', '2025-01-01')"},
+  {"name":"update","sql":"UPDATE accounts SET status = 'CLOSED'"},
+  {"name":"delete","sql":"DELETE FROM customers"},
+  {"name":"ddl","sql":"CREATE TABLE forbidden(id INTEGER)"},
+  {"name":"stacked","sql":"SELECT 1; DROP TABLE accounts"},
+  {"name":"transaction","sql":"BEGIN TRANSACTION"},
+  {"name":"attach","sql":"ATTACH DATABASE 'other.sqlite' AS other"},
+  {"name":"unsafe-pragma","sql":"PRAGMA foreign_keys = OFF"},
+  {"name":"cte-mutation","sql":"WITH removed AS (DELETE FROM accounts RETURNING account_id) SELECT * FROM removed"},
+  {"name":"select-into","sql":"SELECT * INTO copied_accounts FROM accounts"}
+]

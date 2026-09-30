@@ -1,0 +1,9 @@
+node_modules/
+dist/
+src-tauri/target/
+release/
+src-tauri/.env
+.env
+*.db
+*.sqlite
+!fixtures/core-banking/banking-small.sqlite

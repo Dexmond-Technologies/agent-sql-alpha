@@ -1,0 +1,1263 @@
+{
+  "engine": "source",
+  "tables": [
+    {
+      "schema": "inferred",
+      "name": "account_holders",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "holder_role",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "ownership_percent",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "added_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "account_products",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "product_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "product_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "product_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "default_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "interest_rate_bps",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "minimum_balance_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "monthly_fee_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "accounts",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "account_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "branch_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "product_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "opened_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "closed_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "last_activity_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "overdraft_limit_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "external_reference",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "account_label",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "updated_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "aml_alert_transactions",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "alert_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "match_reason",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "contribution_score",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "aml_alerts",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "alert_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "alert_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "severity",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "alert_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "score",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "opened_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "closed_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "disposition",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "audit_events",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "audit_event_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "entity_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "entity_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "action",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "actor",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "occurred_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "changes_json",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "correlation_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "beneficiaries",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "beneficiary_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "owner_customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "nickname",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "beneficiary_name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "destination_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "destination_country",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "created_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "verified_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "is_trusted",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "branches",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "branch_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "branch_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "country_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "opened_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "card_authorizations",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "authorization_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "card_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "merchant_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "decision",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "response_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "authorized_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "device_fingerprint",
+          "dataType": "BLOB",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "cards",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "card_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "card_token",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "last_four",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "card_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "issued_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "expires_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "currencies",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "minor_unit",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "customer_addresses",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "address_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "address_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "line_1",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "line_2",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "city",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "postal_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "country_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "valid_from",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "valid_to",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "is_primary",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "customers",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "customer_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "given_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "family_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "legal_name",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "email",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "phone",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "risk_rating",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "tax_residency_country",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "created_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "fx_rates",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "base_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "quote_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "rate_date",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "rate_micros",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "source",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "journal_batches",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "batch_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "batch_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "business_date",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "source_system",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "posted_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "kyc_cases",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "kyc_case_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "case_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "risk_score",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "verification_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "opened_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "reviewed_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "reviewer",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "ledger_entries",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "entry_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "entry_side",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "running_sequence",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "posted_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "integrity_hash",
+          "dataType": "BLOB",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "ledger_transactions",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "batch_id",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "transaction_reference",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "transaction_type",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "booked_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "value_date",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "description",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "channel",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "is_cross_border",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "reversal_of_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "loan_installments",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "installment_number",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "due_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "principal_due_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "interest_due_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "paid_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "paid_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "installment_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "loans",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "customer_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "disbursement_account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "principal_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "annual_rate_bps",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "term_months",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "originated_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "maturity_on",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "merchants",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "merchant_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "merchant_name",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "merchant_category_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "country_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "risk_tier",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    },
+    {
+      "schema": "inferred",
+      "name": "payment_instructions",
+      "kind": "table",
+      "columns": [
+        {
+          "name": "payment_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": "PK"
+        },
+        {
+          "name": "source_account_id",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "beneficiary_id",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "transaction_id",
+          "dataType": "INTEGER",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "requested_amount_minor",
+          "dataType": "INTEGER",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "requested_currency_code",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "payment_method",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "payment_status",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "requested_at",
+          "dataType": "TEXT",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "settled_at",
+          "dataType": "TEXT",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "sourceFile": "schema.sql"
+    }
+  ],
+  "capturedAt": "<dynamic>",
+  "sourceKind": "sql"
+}

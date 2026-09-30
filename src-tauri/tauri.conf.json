@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "agentSQL",
+  "version": "0.0.1",
+  "identifier": "com.dexmond.agentsql",
+  "build": { "frontendDist": "../dist", "devUrl": "http://localhost:1420", "beforeDevCommand": "npm run dev", "beforeBuildCommand": "npm run build" },
+  "app": { "windows": [{ "title": "agentSQL", "width": 1440, "height": 900, "minWidth": 980, "minHeight": 680 }], "security": { "csp": null } },
+  "bundle": {
+    "active": true,
+    "publisher": "Dexmond Technologies - Ireland",
+    "copyright": "© 2026 Dexmond Technologies - Ireland. All rights reserved.",
+    "category": "DeveloperTool",
+    "shortDescription": "AI-assisted SQL analysis and controlled query execution.",
+    "longDescription": "agentSQL by Dexmond Technologies connects to supported SQL databases, analyzes schemas, drafts SQL with configurable AI providers, and executes explicitly approved statements.",
+    "targets": ["msi", "dmg", "appimage", "deb"],
+    "resources": {
+      "../README.md": "documentation/README.md",
+      "../RELEASE_NOTES.md": "documentation/RELEASE_NOTES.md",
+      "../THIRD_PARTY_NOTICES.md": "documentation/THIRD_PARTY_NOTICES.md",
+      "../docs/ARCHITECTURE.md": "documentation/ARCHITECTURE.md",
+      "../docs/DATA_HANDLING.md": "documentation/DATA_HANDLING.md",
+      "../docs/WINDOWS_SIGNING.md": "documentation/WINDOWS_SIGNING.md",
+      "../fixtures/core-banking/README.md": "examples/core-banking/README.md",
+      "../fixtures/core-banking/banking-small.sqlite": "examples/core-banking/banking-small.sqlite",
+      "../fixtures/core-banking/generate.py": "examples/core-banking/generate.py",
+      "../fixtures/core-banking/prompts.json": "examples/core-banking/prompts.json",
+      "../fixtures/core-banking/schema.sql": "examples/core-banking/schema.sql",
+      "../fixtures/core-banking/verify.py": "examples/core-banking/verify.py",
+      "../fixtures/core-banking/expected/data-full.json": "examples/core-banking/expected/data-full.json",
+      "../fixtures/core-banking/expected/data-small.json": "examples/core-banking/expected/data-small.json",
+      "../fixtures/core-banking/expected/full-catalog.json": "examples/core-banking/expected/full-catalog.json",
+      "../fixtures/core-banking/expected/querycraft-live-v1.json": "examples/core-banking/expected/querycraft-live-v1.json",
+      "../fixtures/core-banking/expected/querycraft-source-v1.json": "examples/core-banking/expected/querycraft-source-v1.json",
+      "../fixtures/core-banking/queries/blocked.json": "examples/core-banking/queries/blocked.json",
+      "../fixtures/core-banking/queries/read-only.sql": "examples/core-banking/queries/read-only.sql"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "offlineInstaller",
+        "silent": true
+      }
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
