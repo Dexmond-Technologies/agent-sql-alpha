@@ -1,7 +1,9 @@
 mod drivers;
+mod ibmi_snapshot;
 mod models;
 mod network;
 mod providers;
+mod qwen;
 mod safety;
 mod source;
 mod storage;
@@ -492,8 +494,11 @@ async fn ask_agent(
     Ok(response)
 }
 fn public_ai_settings(config: providers::ProviderConfig) -> AiSettings {
-    let configured =
-        matches!(config.provider.as_str(), "ollama" | "lmstudio") || config.api_key.is_some();
+    let configured = if config.provider == "qwen" {
+        qwen::configured(&config)
+    } else {
+        matches!(config.provider.as_str(), "ollama" | "lmstudio") || config.api_key.is_some()
+    };
     AiSettings {
         provider: config.provider,
         model: config.model,

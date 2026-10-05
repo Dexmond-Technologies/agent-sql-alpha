@@ -34,6 +34,12 @@ Result sharing is enabled per conversation by default in the current alpha and c
 
 Ollama and LM Studio are intended for local inference through loopback interfaces. Their own model files, logs, extensions, authentication, and remote-access settings remain outside agentSQL's control and must be secured separately.
 
+The dedicated Qwen provider sends its selected schema objects, recent conversation, and a bounded sample of the current result when sharing is enabled to the configured private model endpoint. Original local schema/results are retained in full. Optional `QWEN_KNOWLEDGE_PATH` evidence excerpts are sent only when explicitly configured; the operator must approve their content and access scope. This opt-in evidence flow is separate from automatic project analysis, which continues to transmit metadata rather than raw source files.
+
+The Qwen gateway logs request IDs, status codes and durations, without logging prompts, SQL, rows or authentication tokens in its own handlers. Model/runtime infrastructure logging and access must still be verified by the operator. Endpoint verification reports contain prompt/answer hashes, timing and token usage, excluding their raw text. IBM i exports are operator-created files outside managed chat retention and may contain schema metadata or requested table values; they require endpoint protection and retention rules.
+
+Platform credential-store features are explicitly enabled in the updated build. Linux requires a functioning Secret Service on the desktop session; Windows/macOS require access to their native stores. Earlier builds with no keyring store features used an in-memory backend and did not establish durable OS-vault storage. Provider tokens, including Qwen and optional authenticated Ollama gateway tokens, remain in app-data `.env` files rather than the vault. Protect those files with OS permissions and the organization's secret-management process.
+
 ## Current alpha gaps for banking production
 
 - The local history SQLite database is not application-level encrypted at rest.

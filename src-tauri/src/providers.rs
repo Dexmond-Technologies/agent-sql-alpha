@@ -3,6 +3,7 @@ use regex::Regex;
 use reqwest::Client;
 use serde_json::{json, Value};
 use std::{
+    collections::BTreeMap,
     fs,
     path::{Path, PathBuf},
     process::{Command, Output},
@@ -18,6 +19,11 @@ pub struct ProviderConfig {
 }
 fn provider_defaults(provider: &str) -> (&'static str, &'static str, Option<&'static str>) {
     match provider {
+        "qwen" => (
+            "qwen3-coder-30b-a3b",
+            "http://127.0.0.1:8000/v1",
+            Some("QWEN_API_KEY"),
+        ),
         "deepseek" => (
             "deepseek-flash",
             "https://api.deepseek.com",
@@ -33,7 +39,7 @@ fn provider_defaults(provider: &str) -> (&'static str, &'static str, Option<&'st
             "https://generativelanguage.googleapis.com/v1beta",
             Some("GEMINI_API_KEY"),
         ),
-        "ollama" => ("gemma4", "http://127.0.0.1:11434", None),
+        "ollama" => ("gemma4", "http://127.0.0.1:11434", Some("OLLAMA_API_KEY")),
         "lmstudio" => (
             "openai/gpt-oss-20b",
             "http://127.0.0.1:1234/v1",
@@ -48,6 +54,7 @@ fn provider_defaults(provider: &str) -> (&'static str, &'static str, Option<&'st
 }
 fn prefix(provider: &str) -> &'static str {
     match provider {
+        "qwen" => "QWEN",
         "deepseek" => "DEEPSEEK",
         "anthropic" => "ANTHROPIC",
         "gemini" => "GEMINI",
@@ -59,12 +66,12 @@ fn prefix(provider: &str) -> &'static str {
 fn valid_provider(provider: &str) -> bool {
     matches!(
         provider,
-        "openai" | "deepseek" | "anthropic" | "gemini" | "ollama" | "lmstudio"
+        "openai" | "deepseek" | "anthropic" | "gemini" | "ollama" | "lmstudio" | "qwen"
     )
 }
 pub fn load(path: &Path) -> ProviderConfig {
-    let _ = dotenvy::from_path_override(path);
-    let requested = std::env::var("AI_PROVIDER")
+    let values = config_values(path);
+    let requested = config_value(&values, "AI_PROVIDER")
         .unwrap_or_else(|_| "openai".into())
         .to_lowercase();
     let provider = if valid_provider(&requested) {
@@ -74,12 +81,12 @@ pub fn load(path: &Path) -> ProviderConfig {
     };
     let (default_model, default_base, key_name) = provider_defaults(&provider);
     let key_prefix = prefix(&provider);
-    let model =
-        std::env::var(format!("{key_prefix}_MODEL")).unwrap_or_else(|_| default_model.into());
-    let base =
-        std::env::var(format!("{key_prefix}_BASE_URL")).unwrap_or_else(|_| default_base.into());
+    let model = config_value(&values, &format!("{key_prefix}_MODEL"))
+        .unwrap_or_else(|_| default_model.into());
+    let base = config_value(&values, &format!("{key_prefix}_BASE_URL"))
+        .unwrap_or_else(|_| default_base.into());
     let key = key_name
-        .and_then(|name| std::env::var(name).ok())
+        .and_then(|name| config_value(&values, name).ok())
         .filter(|v| !v.trim().is_empty());
     ProviderConfig {
         provider,
@@ -88,6 +95,16 @@ pub fn load(path: &Path) -> ProviderConfig {
         api_key: key,
         config_path: path.display().to_string(),
     }
+}
+fn config_values(path: &Path) -> BTreeMap<String, String> {
+    // Each request gets its own file values. Never change process-wide credentials.
+    // Qwen's Options::load separately rejects any malformed configuration before I/O.
+    dotenvy::from_path_iter(path)
+        .map(|entries| entries.filter_map(Result::ok).collect())
+        .unwrap_or_default()
+}
+fn config_value(values: &BTreeMap<String, String>, key: &str) -> Result<String, std::env::VarError> {
+    values.get(key).cloned().map(Ok).unwrap_or_else(|| std::env::var(key))
 }
 fn validate_input(input: &AiSettingsInput) -> Result<(), String> {
     if !valid_provider(&input.provider) {
@@ -108,6 +125,15 @@ fn validate_input(input: &AiSettingsInput) -> Result<(), String> {
             .is_some_and(|v| v.contains('\r') || v.contains('\n'))
     {
         return Err("AI settings cannot contain line breaks.".into());
+    }
+    if input.provider == "qwen" {
+        crate::qwen::validate_settings(&input.base_url, &input.model)?;
+        if input.base_url.contains(['\'', '"', '\\', '$', '#']) || input.base_url.chars().any(char::is_whitespace) {
+            return Err("Use a Qwen URL without whitespace, quotes, backslashes, dollar signs, or #.".into());
+        }
+        if input.api_key.as_deref().is_some_and(|key| !key.is_ascii() || key.contains(['\'', '"', '\\', '$', '#']) || key.chars().any(char::is_whitespace)) {
+            return Err("Use a Qwen API token without whitespace, quotes, backslashes, dollar signs, or #.".into());
+        }
     }
     Ok(())
 }
@@ -154,7 +180,7 @@ pub fn save(path: &Path, input: &AiSettingsInput) -> Result<ProviderConfig, Stri
 }
 fn config_for_input(path: &Path, input: &AiSettingsInput) -> Result<ProviderConfig, String> {
     validate_input(input)?;
-    let _ = dotenvy::from_path_override(path);
+    let values = config_values(path);
     let provider = input.provider.to_lowercase();
     let key = input
         .api_key
@@ -165,7 +191,7 @@ fn config_for_input(path: &Path, input: &AiSettingsInput) -> Result<ProviderConf
         .or_else(|| {
             provider_defaults(&provider)
                 .2
-                .and_then(|name| std::env::var(name).ok())
+                .and_then(|name| config_value(&values, name).ok())
                 .filter(|v| !v.trim().is_empty())
         });
     Ok(ProviderConfig {
@@ -185,6 +211,15 @@ pub async fn ask(
     agent_mode: &AgentMode,
     allow_writes: bool,
 ) -> Result<String, String> {
+    if config.provider == "qwen" {
+        let options = crate::qwen::Options::load(Path::new(&config.config_path))?;
+        let context = crate::qwen::context(&options, schema, question, history, result)?;
+        let prompt = format!("{}\n{}", system_prompt(&context.schema, context.result.as_ref(), agent_mode, allow_writes), context.notes);
+        let answer = crate::qwen::ask(&config, &options, &prompt, question, history, &context.citations).await?;
+        let answer = enforce_interaction_mode(agent_mode, &answer);
+        validate_source_answer(schema, &answer)?;
+        return Ok(answer);
+    }
     let prompt = system_prompt(schema, result, agent_mode, allow_writes);
     let client = Client::new();
     let provider = config.provider.clone();
@@ -269,6 +304,7 @@ fn system_prompt(
         .unwrap_or_else(|| "No result set has been executed.".into());
     let mode = if matches!(schema.engine, crate::models::DatabaseEngine::Source) {
         match schema.source_kind.as_deref() {
+            Some("db2i") => "This is a dated Db2 for i catalog snapshot imported from an operator-run ODBC exporter. It is not a live connection and cannot execute inside agentSQL. Draft one read-only Db2 for i SELECT using only the supplied objects and columns. Use SQL schema.object naming and FETCH FIRST for row limits. Never use MySQL/PostgreSQL LIMIT or SQL Server TOP. The IBM i release/PTFs and available SQL Services require explicit evidence. Unknown relationships and business definitions require clarification; never invent them. Do not generate writes, DDL, CALL, transactions, locking clauses, SELECT INTO or multiple statements. Put one draft in a fenced sql block.".into(),
             Some("chroma") => { let provenance=if schema.tables.iter().any(|t|t.source_file.as_deref().is_some_and(|p|p.ends_with("chroma.sqlite3"))) {"Collection names were read from a local persisted Chroma catalog, not verified against a running server."} else {"Collection names were inferred from source code, not verified against a running Chroma instance."}; format!("This project uses Chroma, a vector database, not SQL. {provenance} Record fields shown are the generic Chroma API shape, not fixed metadata keys. Draft a READ-ONLY Chroma {} snippet using get_collection/getCollection followed by query/get/count/list only. Never use get_or_create_collection, create, add, upsert, update, delete, reset, or modify. Do not generate SQL. If collection names are unknown, ask for the name rather than inventing one. Explain that this is a draft and cannot run inside agentSQL yet. Put code in one fenced block marked python or typescript.",schema.source_language.as_deref().unwrap_or("Python")) },
             Some("mixed") => "This project contains both relational schema and Chroma vector collections. Choose SQL SELECT for relational questions or read-only Chroma query/get code for vector-search questions; do not invent joins across these systems. Ask for clarification when the target is ambiguous. Source findings are unverified drafts and cannot run inside agentSQL without a live connector. Never produce mutations or DDL. Put one draft in a fenced sql, python, or typescript block.".into(),
             Some("unknown") => "No supported database structure was found. Ask for the framework or schema location; do not invent a query.".into(),
@@ -472,10 +508,11 @@ async fn ollama(
     q: &str,
     h: &[(String, String)],
 ) -> Result<String, String> {
-    let response = client
+    let mut request = client
         .post(format!("{}/api/chat", c.base_url))
-        .json(&json!({"model":c.model,"stream":false,"messages":history_messages(prompt,h,q)}))
-        .send()
+        .json(&json!({"model":c.model,"stream":false,"messages":history_messages(prompt,h,q)}));
+    if let Some(key) = c.api_key.as_ref() { request = request.bearer_auth(key); }
+    let response = request.send()
         .await
         .map_err(|e| e.to_string())?
         .error_for_status()
@@ -616,6 +653,9 @@ async fn discover_lmstudio(
 
 pub async fn test(path: &Path, input: &AiSettingsInput) -> Result<AiConnectionTest, String> {
     let c = config_for_input(path, input)?;
+    if c.provider == "qwen" {
+        return crate::qwen::test(&c, &crate::qwen::Options::load(path)?).await;
+    }
     let client = Client::builder()
         .timeout(std::time::Duration::from_secs(20))
         .build()
@@ -623,10 +663,10 @@ pub async fn test(path: &Path, input: &AiSettingsInput) -> Result<AiConnectionTe
     let mut detected_base_url = c.base_url.clone();
     let (value, mut models) = match c.provider.as_str() {
         "ollama" => {
+            let mut request = client.get(format!("{}/api/tags", c.base_url));
+            if let Some(key) = c.api_key.as_ref() { request = request.bearer_auth(key); }
             let value = response_json(
-                client
-                    .get(format!("{}/api/tags", c.base_url))
-                    .send()
+                request.send()
                     .await
                     .map_err(|e| format!("Could not reach Ollama: {e}"))?,
             )

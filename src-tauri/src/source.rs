@@ -32,6 +32,9 @@ const MAX_TOTAL_BYTES: u64 = 16_000_000;
 const MAX_TABLES: usize = 500;
 
 pub fn analyze(folder: &Path) -> Result<Analysis, String> {
+    if folder.is_file() && folder.extension().is_some_and(|extension| extension == "json") {
+        return crate::ibmi_snapshot::analyze(folder);
+    }
     let root = folder
         .canonicalize()
         .map_err(|e| format!("Cannot open project folder: {e}"))?;

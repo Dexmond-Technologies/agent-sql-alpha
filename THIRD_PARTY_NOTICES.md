@@ -1,6 +1,6 @@
 # Third-Party Software and Asset Inventory
 
-Generated from `package-lock.json`, `Cargo.lock`, locally available package metadata, and the repository asset inventory on 2026-09-27.
+Generated from `package-lock.json`, `Cargo.lock`, locally available package metadata, and the repository asset inventory on 2026-10-05.
 
 This inventory records the exact versions locked for agentSQL 0.0.1-alpha and the license identifiers declared by each package. “Locked” means reproducible in the current lockfile; it does not claim that the version is the newest release or free of vulnerabilities. Dependency upgrades require security, compatibility, and license review. License identifiers are informational and are not legal advice.
 
@@ -14,6 +14,10 @@ This inventory records the exact versions locked for agentSQL 0.0.1-alpha and th
 | Microsoft WebView2 | Supplied by Windows, accessed through Tauri/Wry | Microsoft software terms | System runtime; not redistributed as source by this repository |
 | WebKitGTK | Supplied by the Linux distribution, accessed through Tauri/Wry | LGPL-2.1-or-later and component licenses | System runtime; package version depends on the target distribution |
 | WebKit | Supplied by macOS, accessed through Tauri/Wry | Apple/system and upstream component terms | System runtime; version depends on macOS |
+| Qwen3-Coder-30B-A3B-Instruct-FP8 | Official checkpoint revision dcaee4d4dfc5ee71ad501f01f530e5652438fde0 | Apache-2.0 | Optional external GPU deployment; weights are not included in desktop installers |
+| vLLM | v0.30.0 image digest sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90 | Apache-2.0 | Optional external serving runtime; its container dependencies require a separate image/SBOM review |
+| pyodbc | 5.3.0 | MIT | Optional standalone IBM i connector dependency; not embedded in the desktop binary |
+| IBM i Access ODBC driver | Recipient-selected supported driver/version | IBM distribution/license terms | Required for optional IBM i tool; not bundled or installed by agentSQL |
 
 Dexmond Technologies logos, product naming, and original application code are first-party material and are therefore outside this third-party list. No copied application source snippets are intentionally vendored outside the package manager dependencies and the assets identified above.
 
@@ -186,6 +190,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | Component | Locked version | License expression | Version status | Upstream |
 |---|---:|---|---|---|
 | adler2 | 2.0.1 | 0BSD OR MIT OR Apache-2.0 | Transitive; locked | https://github.com/oyvindln/adler2 |
+| aes | 0.8.4 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/block-ciphers |
 | ahash | 0.8.12 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/tkaitchuck/ahash |
 | aho-corasick | 1.1.5 | Unlicense OR MIT | Transitive; locked | https://github.com/BurntSushi/aho-corasick |
 | alloc-no-stdlib | 2.0.4 | BSD-3-Clause | Transitive; locked | https://github.com/dropbox/rust-alloc-no-stdlib |
@@ -193,6 +198,14 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | allocator-api2 | 0.2.21 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/zakarumych/allocator-api2 |
 | android_system_properties | 0.1.6 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/nical/android_system_properties |
 | anyhow | 1.0.104 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/anyhow |
+| async-broadcast | 0.7.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/smol-rs/async-broadcast |
+| async-channel | 2.5.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/async-channel |
+| async-io | 2.6.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/async-io |
+| async-lock | 3.4.2 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/async-lock |
+| async-process | 2.5.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/async-process |
+| async-recursion | 1.2.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dcchut/async-recursion |
+| async-signal | 0.2.14 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/async-signal |
+| async-task | 4.7.1 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/async-task |
 | async-trait | 0.1.92 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/async-trait |
 | asynchronous-codec | 0.6.2 | MIT | Transitive; locked | https://github.com/mxinden/asynchronous-codec |
 | atk | 0.18.2 | MIT | Transitive; locked | https://github.com/gtk-rs/gtk3-rs |
@@ -211,7 +224,9 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | bitflags | 1.3.2 | MIT/Apache-2.0 | Transitive; locked | https://github.com/bitflags/bitflags |
 | bitflags | 2.13.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/bitflags/bitflags |
 | block-buffer | 0.10.4 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/utils |
+| block-padding | 0.3.3 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/utils |
 | block2 | 0.6.2 | MIT | Transitive; locked | https://github.com/madsmtm/objc2 |
+| blocking | 1.7.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/blocking |
 | brotli | 8.0.4 | BSD-3-Clause AND MIT | Transitive; locked | https://github.com/dropbox/rust-brotli |
 | brotli-decompressor | 5.0.3 | BSD-3-Clause/MIT | Transitive; locked | https://github.com/dropbox/rust-brotli-decompressor |
 | bs58 | 0.5.1 | MIT/Apache-2.0 | Transitive; locked | https://github.com/Nullus157/bs58-rs |
@@ -225,6 +240,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | cargo_metadata | 0.19.2 | MIT | Transitive; locked | https://github.com/oli-obk/cargo_metadata |
 | cargo_toml | 0.22.3 | Apache-2.0 OR MIT | Transitive; locked | https://gitlab.com/lib.rs/cargo_toml |
 | cargo-platform | 0.1.9 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/cargo |
+| cbc | 0.1.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/block-modes |
 | cc | 1.4.7 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/cc-rs |
 | cesu8 | 1.1.0 | Apache-2.0/MIT | Transitive; locked | https://github.com/emk/cesu8-rs |
 | cfb | 0.7.3 | MIT | Transitive; locked | https://github.com/mdsteele/rust-cfb |
@@ -233,7 +249,9 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | cfg-if | 1.0.5 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/cfg-if |
 | chacha20 | 0.10.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/stream-ciphers |
 | chrono | 0.4.45 | MIT OR Apache-2.0 | Runtime direct; locked | https://github.com/chronotope/chrono |
+| cipher | 0.4.4 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/traits |
 | combine | 4.6.8 | MIT | Transitive; locked | https://github.com/Marwes/combine |
+| concurrent-queue | 2.5.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/concurrent-queue |
 | connection-string | 0.2.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/prisma/connection-string |
 | const-oid | 0.9.6 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/RustCrypto/formats/tree/master/const-oid |
 | cookie | 0.18.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/SergioBenitez/cookie-rs |
@@ -260,6 +278,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | darling_core | 0.24.1 | MIT | Transitive; locked | https://github.com/TedDriggs/darling |
 | darling_macro | 0.24.1 | MIT | Transitive; locked | https://github.com/TedDriggs/darling |
 | dbus | 0.9.12 | Apache-2.0/MIT | Transitive; locked | https://github.com/diwic/dbus-rs |
+| dbus-secret-service | 4.1.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/brotskydotcom/dbus-secret-service.git |
 | defmt | 1.1.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/knurling-rs/defmt |
 | defmt-macros | 1.1.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/knurling-rs/defmt |
 | defmt-parser | 1.0.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/knurling-rs/defmt |
@@ -287,12 +306,15 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | embed_plist | 1.2.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/nvzqz/embed-plist-rs |
 | embed-resource | 3.0.11 | MIT | Transitive; locked | https://github.com/nabijaczleweli/rust-embed-resource |
 | encoding_rs | 0.8.42 | (Apache-2.0 OR MIT) AND BSD-3-Clause | Transitive; locked | https://github.com/hsivonen/encoding_rs |
+| endi | 1.1.1 | MIT | Transitive; locked | https://github.com/zeenix/endi |
 | enumflags2 | 0.7.12 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/meithecatte/enumflags2 |
 | enumflags2_derive | 0.7.12 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/meithecatte/enumflags2 |
 | equivalent | 1.0.2 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/indexmap-rs/equivalent |
 | erased-serde | 0.4.10 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/erased-serde |
+| errno | 0.3.14 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/lambda-fairy/rust-errno |
 | etcetera | 0.8.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/lunacookies/etcetera |
 | event-listener | 5.4.2 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/event-listener |
+| event-listener-strategy | 0.5.4 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/event-listener-strategy |
 | fallible-iterator | 0.3.0 | MIT/Apache-2.0 | Transitive; locked | https://github.com/sfackler/rust-fallible-iterator |
 | fallible-streaming-iterator | 0.1.9 | MIT/Apache-2.0 | Transitive; locked | https://github.com/sfackler/fallible-streaming-iterator |
 | fastrand | 2.5.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/fastrand |
@@ -313,6 +335,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | futures-executor | 0.3.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/futures-rs |
 | futures-intrusive | 0.5.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/Matthias247/futures-intrusive |
 | futures-io | 0.3.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/futures-rs |
+| futures-lite | 2.6.1 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/futures-lite |
 | futures-macro | 0.3.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/futures-rs |
 | futures-sink | 0.3.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/futures-rs |
 | futures-task | 0.3.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/futures-rs |
@@ -346,6 +369,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | hashlink | 0.9.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/kyren/hashlink |
 | heck | 0.4.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/withoutboats/heck |
 | heck | 0.5.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/withoutboats/heck |
+| hermit-abi | 0.5.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/hermit-os/hermit-rs |
 | hex | 0.4.3 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/KokaKiwi/rust-hex |
 | hkdf | 0.12.4 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/KDFs/ |
 | hmac | 0.12.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/MACs |
@@ -374,6 +398,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | indexmap | 1.9.3 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/bluss/indexmap |
 | indexmap | 2.14.2 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/indexmap-rs/indexmap |
 | infer | 0.19.0 | MIT | Transitive; locked | https://github.com/bojand/infer |
+| inout | 0.1.4 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/utils |
 | ipnet | 2.12.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/krisprice/ipnet |
 | itoa | 1.0.18 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/itoa |
 | javascriptcore-rs | 1.1.2 | MIT | Transitive; locked | https://github.com/tauri-apps/javascriptcore-rs |
@@ -401,6 +426,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | libm | 0.2.16 | MIT | Transitive; locked | https://github.com/rust-lang/compiler-builtins |
 | libredox | 0.1.25 | MIT | Transitive; locked | https://gitlab.redox-os.org/redox-os/libredox.git |
 | libsqlite3-sys | 0.30.1 | MIT | Transitive; locked | https://github.com/rusqlite/rusqlite |
+| linux-raw-sys | 0.12.1 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT | Transitive; locked | https://github.com/sunfishcode/linux-raw-sys |
 | litemap | 0.8.3 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | lock_api | 0.4.14 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/Amanieu/parking_lot |
 | log | 0.4.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/log |
@@ -418,13 +444,17 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | ndk | 0.9.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-mobile/ndk |
 | ndk-sys | 0.6.0+11769913 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-mobile/ndk |
 | new_debug_unreachable | 1.0.6 | MIT | Transitive; locked | https://github.com/mbrubeck/rust-debug-unreachable |
+| nix | 0.29.0 | MIT | Transitive; locked | https://github.com/nix-rust/nix |
+| num | 0.4.3 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num |
 | num_enum | 0.7.6 | BSD-3-Clause OR MIT OR Apache-2.0 | Transitive; locked | https://github.com/illicitonion/num_enum |
 | num_enum_derive | 0.7.6 | BSD-3-Clause OR MIT OR Apache-2.0 | Transitive; locked | https://github.com/illicitonion/num_enum |
 | num-bigint | 0.4.8 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num-bigint |
 | num-bigint-dig | 0.8.6 | MIT/Apache-2.0 | Transitive; locked | https://github.com/dignifiedquire/num-bigint |
+| num-complex | 0.4.6 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num-complex |
 | num-conv | 0.2.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/jhpratt/num-conv |
 | num-integer | 0.1.47 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num-integer |
 | num-iter | 0.1.46 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num-iter |
+| num-rational | 0.4.2 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num-rational |
 | num-traits | 0.2.19 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-num/num-traits |
 | objc2 | 0.6.4 | MIT | Transitive; locked | https://github.com/madsmtm/objc2 |
 | objc2-app-kit | 0.3.2 | Zlib OR Apache-2.0 OR MIT | Transitive; locked | https://github.com/madsmtm/objc2 |
@@ -446,6 +476,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | once_cell | 1.21.4 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/matklad/once_cell |
 | openssl-probe | 0.1.6 | MIT/Apache-2.0 | Transitive; locked | https://github.com/alexcrichton/openssl-probe |
 | option-ext | 0.2.0 | MPL-2.0 | Transitive; locked | https://github.com/soc/option-ext.git |
+| ordered-stream | 0.2.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/danieldg/ordered-stream |
 | pango | 0.18.3 | MIT | Transitive; locked | https://github.com/gtk-rs/gtk-rs-core |
 | pango-sys | 0.18.0 | MIT | Transitive; locked | https://github.com/gtk-rs/gtk-rs-core |
 | parking | 2.2.1 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/parking |
@@ -459,6 +490,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | phf_macros | 0.13.1 | MIT | Transitive; locked | https://github.com/rust-phf/rust-phf |
 | phf_shared | 0.13.1 | MIT | Transitive; locked | https://github.com/rust-phf/rust-phf |
 | pin-project-lite | 0.2.17 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/taiki-e/pin-project-lite |
+| piper | 0.2.5 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/smol-rs/piper |
 | pkcs1 | 0.7.5 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/RustCrypto/formats/tree/master/pkcs1 |
 | pkcs8 | 0.10.2 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/RustCrypto/formats/tree/master/pkcs8 |
 | pkg-config | 0.3.34 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rust-lang/pkg-config-rs |
@@ -466,6 +498,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | plist | 1.10.1 | MIT | Transitive; locked | https://github.com/ebarnard/rust-plist/ |
 | png | 0.17.16 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/image-rs/image-png |
 | png | 0.18.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/image-rs/image-png |
+| polling | 3.11.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/smol-rs/polling |
 | portable-atomic | 1.15.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/taiki-e/portable-atomic |
 | portable-atomic-util | 0.2.8 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/taiki-e/portable-atomic-util |
 | potential_utf | 0.1.6 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
@@ -509,6 +542,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | rusqlite | 0.32.1 | MIT | Runtime direct; locked | https://github.com/rusqlite/rusqlite |
 | rustc_version | 0.4.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/djc/rustc-version-rs |
 | rustc-hash | 2.1.3 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/rust-lang/rustc-hash |
+| rustix | 1.1.4 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT | Transitive; locked | https://github.com/bytecodealliance/rustix |
 | rustls | 0.21.12 | Apache-2.0 OR ISC OR MIT | Transitive; locked | https://github.com/rustls/rustls |
 | rustls | 0.23.45 | Apache-2.0 OR ISC OR MIT | Transitive; locked | https://github.com/rustls/rustls |
 | rustls-native-certs | 0.6.3 | Apache-2.0 OR ISC OR MIT | Transitive; locked | https://github.com/ctz/rustls-native-certs |
@@ -526,7 +560,9 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | schemars_derive | 0.8.22 | MIT | Transitive; locked | https://github.com/GREsau/schemars |
 | scopeguard | 1.2.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/bluss/scopeguard |
 | sct | 0.7.1 | Apache-2.0 OR ISC OR MIT | Transitive; locked | https://github.com/rustls/sct.rs |
+| secret-service | 4.0.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/hwchen/secret-service-rs.git |
 | security-framework | 2.11.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/kornelski/rust-security-framework |
+| security-framework | 3.7.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/kornelski/rust-security-framework |
 | security-framework-sys | 2.17.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/kornelski/rust-security-framework |
 | selectors | 0.36.1 | MPL-2.0 | Transitive; locked | https://github.com/servo/stylo |
 | semver | 1.0.28 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/semver |
@@ -548,6 +584,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | sha1 | 0.10.7 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/hashes |
 | sha2 | 0.10.9 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/RustCrypto/hashes |
 | shlex | 2.0.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/comex/rust-shlex |
+| signal-hook-registry | 1.4.8 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/vorner/signal-hook |
 | signature | 2.2.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/RustCrypto/traits/tree/master/signature |
 | simd-adler32 | 0.3.10 | MIT | Transitive; locked | https://github.com/mcountryman/simd-adler32 |
 | simdutf8 | 0.1.5 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/rusticstuff/simdutf8 |
@@ -568,6 +605,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | sqlx-postgres | 0.8.6 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/launchbadge/sqlx |
 | sqlx-sqlite | 0.8.6 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/launchbadge/sqlx |
 | stable_deref_trait | 1.2.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/storyyeller/stable_deref_trait |
+| static_assertions | 1.1.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/nvzqz/static-assertions-rs |
 | string_cache | 0.9.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/servo/string-cache |
 | string_cache_codegen | 0.6.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/servo/string-cache |
 | stringprep | 0.1.5 | MIT/Apache-2.0 | Transitive; locked | https://github.com/sfackler/rust-stringprep |
@@ -594,6 +632,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | tauri-runtime-wry | 2.11.4 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/tauri-apps/tauri |
 | tauri-utils | 2.9.3 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/tauri-apps/tauri |
 | tauri-winres | 0.3.6 | MIT | Transitive; locked | https://github.com/tauri-apps/winres |
+| tempfile | 3.27.0 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/Stebalien/tempfile |
 | tendril | 0.5.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/servo/html5ever |
 | thiserror | 1.0.69 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/thiserror |
 | thiserror | 2.0.20 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/thiserror |
@@ -632,6 +671,7 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | try-lock | 0.2.5 | MIT | Transitive; locked | https://github.com/seanmonstar/try-lock |
 | typeid | 1.0.3 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/dtolnay/typeid |
 | typenum | 1.20.1 | MIT OR Apache-2.0 | Transitive; locked | https://github.com/paholg/typenum |
+| uds_windows | 1.2.1 | MIT | Transitive; locked | https://github.com/haraldh/rust_uds_windows |
 | unic-char-property | 0.9.0 | MIT/Apache-2.0 | Transitive; locked | https://github.com/open-i18n/rust-unic/ |
 | unic-char-range | 0.9.0 | MIT/Apache-2.0 | Transitive; locked | https://github.com/open-i18n/rust-unic/ |
 | unic-common | 0.9.0 | MIT/Apache-2.0 | Transitive; locked | https://github.com/open-i18n/rust-unic/ |
@@ -745,18 +785,26 @@ Dexmond Technologies logos, product naming, and original application code are fi
 | wry | 0.55.1 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/tauri-apps/wry |
 | x11 | 2.21.0 | MIT | Transitive; locked | https://github.com/AltF02/x11-rs.git |
 | x11-dl | 2.21.0 | MIT | Transitive; locked | https://github.com/AltF02/x11-rs.git |
+| xdg-home | 1.3.0 | MIT | Transitive; locked | https://github.com/zeenix/xdg-home |
 | yoke | 0.8.3 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | yoke-derive | 0.8.3 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
+| zbus | 4.4.0 | MIT | Transitive; locked | https://github.com/dbus2/zbus/ |
+| zbus_macros | 4.4.0 | MIT | Transitive; locked | https://github.com/dbus2/zbus/ |
+| zbus_names | 3.0.0 | MIT | Transitive; locked | https://github.com/dbus2/zbus/ |
 | zerocopy | 0.8.57 | BSD-2-Clause OR Apache-2.0 OR MIT | Transitive; locked | https://github.com/google/zerocopy |
 | zerocopy-derive | 0.8.57 | BSD-2-Clause OR Apache-2.0 OR MIT | Transitive; locked | https://github.com/google/zerocopy |
 | zerofrom | 0.1.8 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | zerofrom-derive | 0.1.8 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | zeroize | 1.9.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/RustCrypto/utils |
+| zeroize_derive | 1.5.0 | Apache-2.0 OR MIT | Transitive; locked | https://github.com/RustCrypto/utils |
 | zerotrie | 0.2.5 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | zerovec | 0.11.8 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | zerovec-derive | 0.11.6 | Unicode-3.0 | Transitive; locked | https://github.com/unicode-org/icu4x |
 | zlib-rs | 0.6.8 | Zlib | Transitive; locked | https://github.com/trifectatechfoundation/zlib-rs |
 | zmij | 1.0.23 | MIT | Transitive; locked | https://github.com/dtolnay/zmij |
+| zvariant | 4.2.0 | MIT | Transitive; locked | https://github.com/dbus2/zbus/ |
+| zvariant_derive | 4.2.0 | MIT | Transitive; locked | https://github.com/dbus2/zbus/ |
+| zvariant_utils | 2.1.0 | MIT | Transitive; locked | https://github.com/dbus2/zbus/ |
 
 ## Maintenance
 

@@ -1,0 +1,102 @@
+name: agentsql-qwen
+services:
+  model:
+    image: vllm/vllm-openai:v0.30.0@sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90
+    restart: unless-stopped
+    user: "10001:10001"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    shm_size: "16gb"
+    environment:
+      VLLM_API_KEY: ${QWEN_SERVER_API_KEY:?Set a real random server API token in .env}
+      VLLM_SERVER_DEV_MODE: "0"
+      VLLM_DEBUG_LOG_API_SERVER_RESPONSE: "False"
+      HF_HOME: /models/huggingface
+      VLLM_CACHE_ROOT: /models/vllm-cache
+      XDG_CACHE_HOME: /models/runtime-cache
+      TRITON_CACHE_DIR: /models/triton-cache
+      TORCH_EXTENSIONS_DIR: /models/torch-extensions
+    volumes:
+      - ${QWEN_MODEL_CACHE:?Set an absolute, dedicated writable model-cache directory}:/models
+    command:
+      - --model
+      - Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8
+      - --revision
+      - dcaee4d4dfc5ee71ad501f01f530e5652438fde0
+      - --served-model-name
+      - qwen3-coder-30b-a3b
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --max-model-len
+      - ${QWEN_CONTEXT_TOKENS:-32768}
+      - --max-num-seqs
+      - ${QWEN_MAX_CONCURRENT:-2}
+      - --max-num-batched-tokens
+      - "4096"
+      - --gpu-memory-utilization
+      - "0.90"
+      - --enable-prefix-caching
+      - --enable-chunked-prefill
+      - --generation-config
+      - vllm
+      - --no-enable-log-requests
+      - --disable-log-stats
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: [CMD, python3, -c, "import os,urllib.request; r=urllib.request.Request('http://127.0.0.1:8000/health',headers={'Authorization':'Bearer '+os.environ['VLLM_API_KEY']}); urllib.request.urlopen(r,timeout=5).close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 15m
+    logging:
+      driver: local
+      options: { max-size: "10m", max-file: "3" }
+
+  gateway:
+    # Reuse the pinned runtime's Python; the gateway installs no additional dependencies.
+    image: vllm/vllm-openai:v0.30.0@sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90
+    entrypoint: [python3, /app/gateway.py]
+    user: "10001:10001"
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      QWEN_BACKEND_URL: http://model:8000
+      QWEN_SERVER_API_KEY: ${QWEN_SERVER_API_KEY:?Set a real random server API token in .env}
+      QWEN_SERVED_MODEL: qwen3-coder-30b-a3b
+      QWEN_GATEWAY_BIND: 0.0.0.0
+      QWEN_GATEWAY_PORT: "8443"
+      QWEN_TLS_CERT_FILE: /tls/server-chain.pem
+      QWEN_TLS_KEY_FILE: /tls/server-key.pem
+      QWEN_CONTEXT_TOKENS: ${QWEN_CONTEXT_TOKENS:-32768}
+      QWEN_MAX_OUTPUT_TOKENS: ${QWEN_MAX_OUTPUT_TOKENS:-2048}
+      QWEN_TIMEOUT_SECONDS: ${QWEN_TIMEOUT_SECONDS:-120}
+      QWEN_MAX_CONCURRENT: ${QWEN_MAX_CONCURRENT:-2}
+    volumes:
+      - ./gateway.py:/app/gateway.py:ro
+      - ${QWEN_TLS_DIRECTORY:?Set the directory containing the real TLS certificate and private key}:/tls:ro
+    ports:
+      - "${QWEN_HOST_BIND:-127.0.0.1}:8443:8443"
+    depends_on:
+      model: { condition: service_healthy }
+    healthcheck:
+      # Liveness only. Model discovery/generation require the live verification script.
+      test: [CMD, python3, -c, "import socket; socket.create_connection(('127.0.0.1',8443),timeout=3).close()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: local
+      options: { max-size: "10m", max-file: "3" }

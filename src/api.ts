@@ -136,7 +136,13 @@ export const api = {
     persist(state); return assistant;
   },
   settings: async (): Promise<AiSettings> => nativeApp ? call<AiSettings>("ai_settings") : ({ provider: "openai", model: "browser demo responses", baseUrl: "https://api.openai.com/v1", configured: true, configPath: "Browser demo — desktop app uses its .env file" }),
-  saveAiSettings: async (settings: AiSettingsInput): Promise<AiSettings> => nativeApp ? call<AiSettings>("save_ai_settings", { settings }) : ({ provider: settings.provider, model: settings.model, baseUrl: settings.baseUrl, configured: settings.provider === "ollama" || settings.provider === "lmstudio" || !!settings.apiKey, configPath: "Browser demo — settings are not sent anywhere" }),
-  testAiProvider: async (settings: AiSettingsInput): Promise<AiConnectionTest> => nativeApp ? call<AiConnectionTest>("test_ai_provider", { settings }) : ({ provider: settings.provider, model: settings.model, baseUrl: settings.baseUrl, message: "Browser demo settings are valid. Use the desktop app to test a real provider.", availableModels: [settings.model] }),
+  saveAiSettings: async (settings: AiSettingsInput): Promise<AiSettings> => {
+    if (!nativeApp && settings.provider === "qwen") throw new Error("Qwen settings require the installed desktop application. No model connection was made.");
+    return nativeApp ? call<AiSettings>("save_ai_settings", { settings }) : ({ provider: settings.provider, model: settings.model, baseUrl: settings.baseUrl, configured: settings.provider === "ollama" || settings.provider === "lmstudio" || !!settings.apiKey, configPath: "Browser demo — settings are not sent anywhere" });
+  },
+  testAiProvider: async (settings: AiSettingsInput): Promise<AiConnectionTest> => {
+    if (!nativeApp && settings.provider === "qwen") throw new Error("A real Qwen connection can only be tested in the installed desktop application.");
+    return nativeApp ? call<AiConnectionTest>("test_ai_provider", { settings }) : ({ provider: settings.provider, model: settings.model, baseUrl: settings.baseUrl, message: "Browser demo settings are valid. Use the desktop app to test a real provider.", availableModels: [settings.model] });
+  },
   deleteSession: async (sessionId: string) => { if (nativeApp) return call<void>("delete_session", { sessionId }); const state = store(); state.sessions = state.sessions.filter(s => s.id !== sessionId); delete state.messages[sessionId]; delete state.outputs[sessionId]; persist(state); }
 };

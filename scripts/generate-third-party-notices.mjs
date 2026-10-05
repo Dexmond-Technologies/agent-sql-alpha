@@ -46,7 +46,7 @@ const rustPackages = cargoPackages.map(item => {
 const table = rows => ["| Component | Locked version | License expression | Version status | Upstream |", "|---|---:|---|---|---|", ...rows.map(row => `| ${escapeCell(row.name)} | ${escapeCell(row.version)} | ${escapeCell(row.license)} | ${escapeCell(row.status)} | ${escapeCell(row.repository)} |`)].join("\n");
 const generated = `# Third-Party Software and Asset Inventory
 
-Generated from \`package-lock.json\`, \`Cargo.lock\`, locally available package metadata, and the repository asset inventory on 2026-09-27.
+Generated from \`package-lock.json\`, \`Cargo.lock\`, locally available package metadata, and the repository asset inventory on ${new Date().toISOString().slice(0, 10)}.
 
 This inventory records the exact versions locked for agentSQL 0.0.1-alpha and the license identifiers declared by each package. “Locked” means reproducible in the current lockfile; it does not claim that the version is the newest release or free of vulnerabilities. Dependency upgrades require security, compatibility, and license review. License identifiers are informational and are not legal advice.
 
@@ -60,6 +60,10 @@ This inventory records the exact versions locked for agentSQL 0.0.1-alpha and th
 | Microsoft WebView2 | Supplied by Windows, accessed through Tauri/Wry | Microsoft software terms | System runtime; not redistributed as source by this repository |
 | WebKitGTK | Supplied by the Linux distribution, accessed through Tauri/Wry | LGPL-2.1-or-later and component licenses | System runtime; package version depends on the target distribution |
 | WebKit | Supplied by macOS, accessed through Tauri/Wry | Apple/system and upstream component terms | System runtime; version depends on macOS |
+| Qwen3-Coder-30B-A3B-Instruct-FP8 | Official checkpoint revision dcaee4d4dfc5ee71ad501f01f530e5652438fde0 | Apache-2.0 | Optional external GPU deployment; weights are not included in desktop installers |
+| vLLM | v0.30.0 image digest sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90 | Apache-2.0 | Optional external serving runtime; its container dependencies require a separate image/SBOM review |
+| pyodbc | 5.3.0 | MIT | Optional standalone IBM i connector dependency; not embedded in the desktop binary |
+| IBM i Access ODBC driver | Recipient-selected supported driver/version | IBM distribution/license terms | Required for optional IBM i tool; not bundled or installed by agentSQL |
 
 Dexmond Technologies logos, product naming, and original application code are first-party material and are therefore outside this third-party list. No copied application source snippets are intentionally vendored outside the package manager dependencies and the assets identified above.
 

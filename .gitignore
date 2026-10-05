@@ -7,3 +7,5 @@ src-tauri/.env
 *.db
 *.sqlite
 !fixtures/core-banking/banking-small.sqlite
+__pycache__/
+.venv-ibmi/

@@ -79,3 +79,13 @@ When Tauri is unavailable, `src/api.ts` provides a non-production browser demons
 ## Verification
 
 Frontend compilation is enforced by TypeScript before the Vite production build. Rust tests cover SQL bypass attempts, provider prompts and configuration, source inference, storage migrations and deletion, durable output independence, and live SQLite fixture behavior including the 10,000-row cap.
+
+## Qwen integration extension
+
+`qwen.rs` adds the dedicated private Qwen path alongside existing provider adapters. Its configuration, bounded lexical context selection and optional reviewed evidence are independent of the other providers. Actual vLLM tokenization reserves output capacity before generation; model substitution, HTTP redirects, incomplete output and tool calls are rejected. The native SQL gate and user execution action remain authoritative. Native unit tests establish these transformations and rejection rules, not GPU speed or model SQL quality.
+
+Provider settings are read from the app-data file for each request, with environment fallback for absent keys. Reading or testing a provider no longer mutates process-wide credential values. File values take precedence, including deliberately blank values.
+
+`ibmi_snapshot.rs` validates the declared export contract from the standalone IBM i ODBC tool and stores its normalized catalog as a `source` profile with `sourceKind=db2i`. File refresh preserves the original capture timestamp. Snapshot profiles cannot execute. The exporter performs real ODBC calls; the desktop importer cannot independently verify that the export's provenance is truthful.
+
+The deployment gateway and model run separately from the desktop. The gateway has no database credentials or execution route. Its token is shared by the approved client deployment; it does not implement per-user identity or enterprise resource authorization. See [QWEN_DEPLOYMENT.md](QWEN_DEPLOYMENT.md) for the exact implemented controls and acceptance dependencies.

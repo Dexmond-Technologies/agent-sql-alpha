@@ -2,6 +2,15 @@
 
 This is the first public test build of agentSQL by Dexmond Technologies for Windows and Linux.
 
+## Qwen integration upgrade
+
+- Dedicated Qwen3-Coder-30B-A3B provider with exact model verification, real server-side token budgeting, bounded schema/result context, optional reviewed evidence, and rejection of incomplete responses.
+- Pinned FP8 model/vLLM deployment, authenticated TLS gateway, and a script that records real endpoint timings/token usage without inventing measurements.
+- Operator-run IBM i ODBC catalog export and bounded base-table reads, plus desktop import as a dated Db2 for i source snapshot. This is not a live IBM i desktop execution adapter.
+- Explicit Windows/macOS/Linux credential-store features; previous builds without them used keyring's in-memory mock backend.
+- Qwen browser connection/testing requests fail explicitly. Existing browser examples remain available and are labelled synthetic.
+- Existing database/provider features, profiles, conversations and SQL execution controls are preserved. GPU/IBM i production acceptance and installer signing still require the recipient's environment and credentials.
+
 ## Included
 
 - SQLite connection profiles and live schema introspection.

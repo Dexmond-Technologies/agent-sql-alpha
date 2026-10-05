@@ -1,5 +1,5 @@
 export type DatabaseEngine = "auto" | "postgres" | "mysql" | "sqlserver" | "sqlite" | "source";
-export type ProviderName = "openai" | "deepseek" | "anthropic" | "gemini" | "ollama" | "lmstudio";
+export type ProviderName = "openai" | "deepseek" | "anthropic" | "gemini" | "ollama" | "lmstudio" | "qwen";
 export type AgentMode = "plan" | "chat" | "direct";
 export type TlsMode = "verifyIdentity" | "require" | "disable";
 export type SqlOperation = "read" | "insert" | "update" | "delete" | "merge" | "ddl" | "procedure" | "permission" | "maintenance";
@@ -36,7 +36,7 @@ export interface ProfileInput {
 
 export interface SchemaTable { schema: string; name: string; kind: "table" | "view" | "collection"; columns: SchemaColumn[]; sourceFile?: string }
 export interface SchemaColumn { name: string; dataType: string; nullable: boolean; key?: string }
-export interface SchemaSnapshot { engine: DatabaseEngine; tables: SchemaTable[]; capturedAt: string; sourceKind?: "sql" | "chroma" | "mixed" | "unknown"; sourceLanguage?: "python" | "typescript" }
+export interface SchemaSnapshot { engine: DatabaseEngine; tables: SchemaTable[]; capturedAt: string; sourceKind?: "sql" | "db2i" | "chroma" | "mixed" | "unknown"; sourceLanguage?: "python" | "typescript" }
 export interface QueryResult { columns: string[]; rows: unknown[][]; elapsedMs: number; truncated: boolean; }
 export interface QueryAssessment { operation: SqlOperation; label: string; readOnly: boolean; destructive: boolean; requiresConfirmation: boolean; }
 export interface QueryOutput { id: string; sessionId: string; sourceMessageId?: string; title: string; sql: string; result?: QueryResult; collapsed: boolean; createdAt: string; updatedAt: string; }

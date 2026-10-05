@@ -74,3 +74,11 @@ Choose **LM Studio (local)** in agentSQL and select **Connect LM Studio**. agent
 - [`docs/DATA_HANDLING.md`](docs/DATA_HANDLING.md) documents local and provider data flows, deletion semantics, and banking deployment considerations.
 - [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) inventories all locked JavaScript and Rust dependencies plus bundled third-party assets, with license and version status.
 - [`docs/WINDOWS_SIGNING.md`](docs/WINDOWS_SIGNING.md) describes the organization-validated MSI signing workflow and certificate prerequisite.
+
+## Private Qwen and IBM i catalog snapshots
+
+Choose **Qwen (private server)** to use a real vLLM endpoint serving Qwen3-Coder-30B-A3B. The dedicated adapter verifies the exact model, counts tokens using the server's tokenizer, bounds schema/result context, and rejects incomplete answers. Remote servers require authenticated HTTPS; there is no alternate-provider fallback. The browser demonstration cannot test or use Qwen and remains explicitly labelled as synthetic.
+
+[`deployment/qwen`](deployment/qwen/compose.yaml) contains the pinned FP8 model/runtime configuration and a TLS gateway. [`tools/ibmi`](tools/ibmi/connector.py) supplies a real operator-run ODBC catalog exporter and bounded base-table reads. **Import IBM i catalog snapshot** enables Db2 for i drafting against the dated export. It does not add a live IBM i desktop driver; execution remains disabled for imported snapshots.
+
+See [`docs/QWEN_DEPLOYMENT.md`](docs/QWEN_DEPLOYMENT.md) for setup, prerequisites, actual endpoint measurement, evidence handling and unresolved production acceptance requirements. OS credential-store backends are now explicitly enabled; vault access still needs validation on each delivery platform. GPU performance, IBM i interoperability and IBM certification are not established by this repository upgrade.

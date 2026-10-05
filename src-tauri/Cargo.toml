@@ -32,3 +32,14 @@ tiberius = { version = "0.12.3", default-features = false, features = ["rustls",
 bigdecimal = "0.4"
 urlencoding = "2"
 regex = "1"
+
+# keyring 3 has no default platform store; without these features it uses an
+# in-memory mock. Explicit native stores must be enabled for every desktop target.
+[target.'cfg(target_os = "linux")'.dependencies]
+keyring = { version = "3", features = ["sync-secret-service", "crypto-rust"] }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+keyring = { version = "3", features = ["windows-native"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+keyring = { version = "3", features = ["apple-native"] }
