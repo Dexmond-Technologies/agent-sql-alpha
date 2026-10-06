@@ -1,0 +1,104 @@
+type	title	local_path	source_url	commit
+repository	IBM/ibmi-oss-resources	repositories/IBM--ibmi-oss-resources	https://github.com/IBM/ibmi-oss-resources.git	56a007ba74b440d2e4f215e6019b24d91897cdf5
+repository	IBM/python-itoolkit	repositories/IBM--python-itoolkit	https://github.com/IBM/python-itoolkit.git	ad5799c09f4169728f967982e760d929eab8178f
+repository	IBM/ibmi-oss-docs	repositories/IBM--ibmi-oss-docs	https://github.com/IBM/ibmi-oss-docs.git	f2e90ab7725aa1d05cd0a43add5f98a9bcef3224
+repository	IBM/sqlalchemy-ibmi	repositories/IBM--sqlalchemy-ibmi	https://github.com/IBM/sqlalchemy-ibmi.git	6ebde2b2fb2d808df41aaa967e451f32c1b6a247
+repository	IBM/nodejs-itoolkit	repositories/IBM--nodejs-itoolkit	https://github.com/IBM/nodejs-itoolkit.git	8939804e81d14bec77346edc98f2036155b9312f
+repository	IBM/node-odbc	repositories/IBM--node-odbc	https://github.com/IBM/node-odbc.git	722d4d38d5dc0b40ae9b3d2b26e1a1a6f3ee0fba
+repository	IBM/nodejs-idb-connector	repositories/IBM--nodejs-idb-connector	https://github.com/IBM/nodejs-idb-connector.git	2c5505e4963d94bcecda39c2b525615ad26763c3
+repository	IBM/nodejs-idb-pconnector	repositories/IBM--nodejs-idb-pconnector	https://github.com/IBM/nodejs-idb-pconnector.git	f10d8e3400660e7820e463b3634c2b7874ac58b1
+repository	IBM/ibmichroot	repositories/IBM--ibmichroot	https://github.com/IBM/ibmichroot.git	b2938494bb709b5bc9248481dee48b8cefbf7e62
+repository	IBM/xmlservice	repositories/IBM--xmlservice	https://github.com/IBM/xmlservice.git	9756860b7bc7700de561a21a37bac286cdd8506e
+repository	IBM/ibmi-oss-examples	repositories/IBM--ibmi-oss-examples	https://github.com/IBM/ibmi-oss-examples.git	37f17dc6527e1f28314e055c050bb426f5cfe0f1
+HTML	IBM i Open Source Resources | ibmi-oss-resources	pages/ibm.github.io/e9f007f18601.html	https://ibm.github.io/ibmi-oss-resources/	
+HTML	IBM i Open Source — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/6b617785b792.html	https://ibmi-oss-docs.readthedocs.io/en/latest/	
+HTML	IBM i Open Source — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/47c981b866ac.html	https://ibmi-oss-docs.readthedocs.io/en/latest/README.html	
+HTML	ACS Clone Repo Tool — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/489e25dfec49.html	https://ibmi-oss-docs.readthedocs.io/en/latest/acscloner/README.html	
+HTML	Integrating with Apache (IBM HTTP Server for i) — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/4a0a9baad2e9.html	https://ibmi-oss-docs.readthedocs.io/en/latest/apache/README.html	
+HTML	Apache Camel — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/fd14c1bfe307.html	https://ibmi-oss-docs.readthedocs.io/en/latest/camel/README.html	
+HTML	LetsEncrypt w/Certbot — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/52ac89670917.html	https://ibmi-oss-docs.readthedocs.io/en/latest/certbot.html	
+HTML	Open Source Java Application Servers — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/e739cba40a7f.html	https://ibmi-oss-docs.readthedocs.io/en/latest/java/APP_SERVERS.html	
+HTML	Java 11 Early Access RPM — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/d6854cb9697e.html	https://ibmi-oss-docs.readthedocs.io/en/latest/java/JAVA11_EARLY_ACCESS.html	
+HTML	Java — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/9a69beda8ee2.html	https://ibmi-oss-docs.readthedocs.io/en/latest/java/README.html	
+HTML	Deploying Tomcat on IBM i — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/d5d5ca93d7bb.html	https://ibmi-oss-docs.readthedocs.io/en/latest/java/tomcat/DEPLOYMENT.html	
+HTML	Deploying WildFly on IBM i — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/42f237d3e7cb.html	https://ibmi-oss-docs.readthedocs.io/en/latest/java/wildfly/DEPLOYMENT.html	
+HTML	Java 11 Early Access RPM — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/b36d5caadb9b.html	https://ibmi-oss-docs.readthedocs.io/en/latest/java11/JAVA11_EARLY_ACCESS.html	
+HTML	Using Db2 Triggers and Apache Camel to stream Db2 events to Kafka — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/a32c4b78dea4.html	https://ibmi-oss-docs.readthedocs.io/en/latest/kafka/KAFKA_CAMEL_DTAQ.html	
+HTML	Using the JDBC Source/Sink Connectors and Kafka Connect — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/73b1b151d7f1.html	https://ibmi-oss-docs.readthedocs.io/en/latest/kafka/KAFKA_CONNECT_JDBC.html	
+HTML	Kafka — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/12cb31a28ce5.html	https://ibmi-oss-docs.readthedocs.io/en/latest/kafka/README.html	
+HTML	Migrating from MariaDB 10.3.x MariaDB 10.6.x — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/63eafc544e1e.html	https://ibmi-oss-docs.readthedocs.io/en/latest/mariadb/MIGRATION-10.6.html	
+HTML	MariaDB — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/5fff289fdbf7.html	https://ibmi-oss-docs.readthedocs.io/en/latest/mariadb/README.html	
+HTML	NGINX — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/a75933fd4d8e.html	https://ibmi-oss-docs.readthedocs.io/en/latest/nginx/README.html	
+HTML	Known Issues — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/753b7151e4b0.html	https://ibmi-oss-docs.readthedocs.io/en/latest/nodejs/KNOWN-ISSUES.html	
+HTML	Node.js usage notes — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/e72fd8d6ab99.html	https://ibmi-oss-docs.readthedocs.io/en/latest/nodejs/README.html	
+HTML	ODBC — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/5d43be029e4f.html	https://ibmi-oss-docs.readthedocs.io/en/latest/odbc/README.html	
+HTML	Node.js Example — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/f371ecc28a65.html	https://ibmi-oss-docs.readthedocs.io/en/latest/odbc/examples.html	
+HTML	IBM i Access ODBC Installation — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/2a69d8ad1fd2.html	https://ibmi-oss-docs.readthedocs.io/en/latest/odbc/installation.html	
+HTML	Using ODBC — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/edf8fcf546df.html	https://ibmi-oss-docs.readthedocs.io/en/latest/odbc/using.html	
+HTML	Why ODBC — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/d732fa0a1d34.html	https://ibmi-oss-docs.readthedocs.io/en/latest/odbc/why-odbc.html	
+HTML	PHP — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/3fde48d8f12c.html	https://ibmi-oss-docs.readthedocs.io/en/latest/php/README.html	
+HTML	Gotchas When Building Software in PASE — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/157cca812a7e.html	https://ibmi-oss-docs.readthedocs.io/en/latest/porting/GOTCHAS.html	
+HTML	Map PASE/IBM i Version to AIX Version — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/81aebda40f81.html	https://ibmi-oss-docs.readthedocs.io/en/latest/porting/PASE-TO-AIX-LEVEL.html	
+HTML	Porting Software to PASE — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/070e5e19cf04.html	https://ibmi-oss-docs.readthedocs.io/en/latest/porting/README.html	
+HTML	PostgreSQL Installation and Basic Configuration on IBM i — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/c5bdd29bb46a.html	https://ibmi-oss-docs.readthedocs.io/en/latest/postgresql.html	
+HTML	Installing Python Packages — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/356a18cd8c15.html	https://ibmi-oss-docs.readthedocs.io/en/latest/python/INSTALLING_PYTHON_PKGS.html	
+HTML	Python — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/04a154f730f3.html	https://ibmi-oss-docs.readthedocs.io/en/latest/python/README.html	
+HTML	TLS Setup — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/020c94f8a32f.html	https://ibmi-oss-docs.readthedocs.io/en/latest/tls/README.html	
+HTML	Guide to migrating from 5733-OPS to RPMs — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/1fe169f4424f.html	https://ibmi-oss-docs.readthedocs.io/en/latest/troubleshooting/5733OPS_MIGRATION.html	
+HTML	Troubleshooting — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/432069f14fb6.html	https://ibmi-oss-docs.readthedocs.io/en/latest/troubleshooting/README.html	
+HTML	Setting BASH as your shell — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/3332437cdfa4.html	https://ibmi-oss-docs.readthedocs.io/en/latest/troubleshooting/SETTING_BASH.html	
+HTML	Adjusting your PATH temporarily — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/09e8e068ba14.html	https://ibmi-oss-docs.readthedocs.io/en/latest/troubleshooting/SETTING_PATH.html	
+HTML	Troubleshooting Yum connection problems — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/a8b04b78a6f8.html	https://ibmi-oss-docs.readthedocs.io/en/latest/troubleshooting/YUM.html	
+HTML	Setting up a User’s Environment — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/da3241873bce.html	https://ibmi-oss-docs.readthedocs.io/en/latest/user_setup/README.html	
+HTML	Third-party (non-IBM) repositories — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/315e3b97efc7.html	https://ibmi-oss-docs.readthedocs.io/en/latest/yum/3RD_PARTY_REPOS.html	
+HTML	IBM Repositories — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/28c9ca94b4e9.html	https://ibmi-oss-docs.readthedocs.io/en/latest/yum/IBM_REPOS.html	
+HTML	OpenSSL 3.0 Migration — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/9f35346f9ba4.html	https://ibmi-oss-docs.readthedocs.io/en/latest/yum/OPENSSL3_MIGRATION.html	
+HTML	RPM pile for IBM i releases in standard support — IBM i OSS Docs  documentation	pages/ibmi-oss-docs.readthedocs.io/603e477085e1.html	https://ibmi-oss-docs.readthedocs.io/en/latest/yum/README.html	
+HTML	IBM Db2 for i connector | LoopBack Documentation	pages/loopback.io/55615d59fd9b.html	https://loopback.io/doc/en/lb4/DB2-for-i-connector.html	
+HTML	Welcome to nodejs-itoolkit’s documentation! — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/f61f487d40ad.html	https://nodejs-itoolkit.readthedocs.io/en/latest/	
+HTML	Calling a Command — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/1747fe20ff24.html	https://nodejs-itoolkit.readthedocs.io/en/latest/CommandCall.html	
+HTML	Creating a Connection — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/fda9c1c2a58b.html	https://nodejs-itoolkit.readthedocs.io/en/latest/Connection.html	
+HTML	Calling a Program or Service Program — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/39685d6d06df.html	https://nodejs-itoolkit.readthedocs.io/en/latest/ProgramCall.html	
+HTML	Deprecated Classes and Functions — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/2493ac50b423.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated.html	
+HTML	iCmd — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/cec6e5b96114.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iCmd.html	
+HTML	iConn — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/511f8a907953.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iConn.html	
+HTML	iDataQueue — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/4d874b99e01d.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iDataQueue.html	
+HTML	iNetwork — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/644af70d5366.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iNetwork.html	
+HTML	iObj — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/ef3926e76fab.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iObj.html	
+HTML	iPgm — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/cbf325467705.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iPgm.html	
+HTML	iProd — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/26b10f021560.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iProd.html	
+HTML	iQsh — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/3f5537c20a5a.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iQsh.html	
+HTML	iSh — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/6c83671ebadb.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iSh.html	
+HTML	iSql — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/91a86e732276.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iSql.html	
+HTML	iUserSpace — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/7f4f9227b8d7.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iUserSpace.html	
+HTML	iWork — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/e07209611dd0.html	https://nodejs-itoolkit.readthedocs.io/en/latest/deprecated/iWork.html	
+HTML	Features — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/d3b4c1d6d520.html	https://nodejs-itoolkit.readthedocs.io/en/latest/features.html	
+HTML	Welcome to nodejs-itoolkit’s documentation! — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/09633cfb4a14.html	https://nodejs-itoolkit.readthedocs.io/en/latest/index.html	
+HTML	Migrating from itoolkit v0.x to v1.x — nodejs-itoolkit 1.0.2 documentation	pages/nodejs-itoolkit.readthedocs.io/84824ba65a84.html	https://nodejs-itoolkit.readthedocs.io/en/latest/migratation-guide-v1.0.html	
+HTML	itoolkit for Python — itoolkit 2.0.0-dev documentation	pages/python-itoolkit.readthedocs.io/7ef19b60f555.html	https://python-itoolkit.readthedocs.io/en/latest/	
+HTML	API Reference — itoolkit 2.0.0-dev documentation	pages/python-itoolkit.readthedocs.io/3c99adf0b4b4.html	https://python-itoolkit.readthedocs.io/en/latest/api.html	
+HTML	Examples — itoolkit 2.0.0-dev documentation	pages/python-itoolkit.readthedocs.io/4acc92b16090.html	https://python-itoolkit.readthedocs.io/en/latest/examples.html	
+HTML	itoolkit for Python — itoolkit 2.0.0-dev documentation	pages/python-itoolkit.readthedocs.io/cf15242b874b.html	https://python-itoolkit.readthedocs.io/en/latest/index.html	
+HTML	Tracing — itoolkit 2.0.0-dev documentation	pages/python-itoolkit.readthedocs.io/9f62a045b5d6.html	https://python-itoolkit.readthedocs.io/en/latest/tracing.html	
+HTML	SQLAlchemy Adapter for IBM i — sqlalchemy-ibmi  documentation	pages/sqlalchemy-ibmi.readthedocs.io/52467462c319.html	https://sqlalchemy-ibmi.readthedocs.io/en/latest/	
+HTML	IBM i Tutorials, Demos, and SQL examples	pages/www.ibm.com/7709665dd23b.html	https://www.ibm.com/support/pages/ibm-i-tutorials-demos-and-sql-examples-0	
+HTML	Welcome to XMLSERVICE’s documentation! — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/5a147e671d5b.html	https://xmlservice.readthedocs.io/en/latest/	
+HTML	XMLSERVICE/Toolkit CCSID — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/b93c71bce844.html	https://xmlservice.readthedocs.io/en/latest/ccsids.html	
+HTML	XMLSERVICE Connections — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/4b2951f5418b.html	https://xmlservice.readthedocs.io/en/latest/connections.html	
+HTML	XMLSERVICE/Toolkit Date, Time, Timestamp — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/0ec68e6ba3af.html	https://xmlservice.readthedocs.io/en/latest/date-time-timestamp.html	
+HTML	XMLSERVICE/Toolkit debugging and service — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/5b69c7fc3424.html	https://xmlservice.readthedocs.io/en/latest/debugging.html	
+HTML	XMLSERVICE Errors — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/0215e4b1cfe9.html	https://xmlservice.readthedocs.io/en/latest/errors.html	
+HTML	XMLSERVICE Examples — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/da8baf69a1fd.html	https://xmlservice.readthedocs.io/en/latest/examples.html	
+HTML	XMLSERVICE FAQ — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/36707c2ab76b.html	https://xmlservice.readthedocs.io/en/latest/faq.html	
+HTML	Toolkit go faster — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/f5966579880c.html	https://xmlservice.readthedocs.io/en/latest/faster.html	
+HTML	XMLSERVICE Functions — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/1631c07b6d17.html	https://xmlservice.readthedocs.io/en/latest/functions.html	
+HTML	XMLSERVICE Interfaces — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/54e5b2339728.html	https://xmlservice.readthedocs.io/en/latest/generic-interface.html	
+HTML	XMLSERVICE/Toolkit idle time out — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/b591b84dc2c7.html	https://xmlservice.readthedocs.io/en/latest/idle-timeout.html	
+HTML	Welcome to XMLSERVICE’s documentation! — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/ec2a160e3bd9.html	https://xmlservice.readthedocs.io/en/latest/index.html	
+HTML	XMLSERVICE Introduction — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/df420ea24c30.html	https://xmlservice.readthedocs.io/en/latest/intro.html	
+HTML	XMLSERVICE IPC — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/a4f8e5ef1f96.html	https://xmlservice.readthedocs.io/en/latest/ipc.html	
+HTML	XMLSERVICE/Toolkit *LIBL — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/a286c8b8bfc6.html	https://xmlservice.readthedocs.io/en/latest/library-list.html	
+HTML	XMLSERVICE Performance — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/ef7569da8592.html	https://xmlservice.readthedocs.io/en/latest/performance.html	
+HTML	XMLSERVICE/Toolkit Sharing QTEMP — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/50279390994f.html	https://xmlservice.readthedocs.io/en/latest/qtemp.html	
+HTML	XMLSERVICE Layouts — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/e24ab97f78b2.html	https://xmlservice.readthedocs.io/en/latest/source-layout.html	
+HTML	XMLSERVICE/Toolkit Character Varying — XMLSERVICE 2.0.2-dev documentation	pages/xmlservice.readthedocs.io/3580fc7c2d72.html	https://xmlservice.readthedocs.io/en/latest/varchar.html	

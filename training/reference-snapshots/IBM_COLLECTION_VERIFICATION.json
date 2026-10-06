@@ -1,0 +1,373 @@
+{
+  "verified_at": "2026-10-01T12:00:56.207462+00:00",
+  "collections": [
+    {
+      "collection": "ibm-enterprise-cobol-zos",
+      "resources": {
+        "downloaded": 290
+      },
+      "verified_files": 380,
+      "pdfs": 264,
+      "unique_file_paths": 380,
+      "unique_content_hashes": 301,
+      "integrity_errors": [],
+      "unavailable": [],
+      "discovery_warnings": []
+    },
+    {
+      "collection": "ibm-i-as400",
+      "resources": {
+        "downloaded": 1350,
+        "failed": 13
+      },
+      "verified_files": 1350,
+      "pdfs": 730,
+      "unique_file_paths": 1343,
+      "unique_content_hashes": 1291,
+      "core_manual_coverage_by_catalog_release": {
+        "7.1": {
+          "SQL reference": [
+            "documents/7.1/en/rbafz--4f42a0ec49.pdf"
+          ],
+          "ILE RPG language": [
+            "documents/7.1/en/sc092508--78ef92a3f8.pdf"
+          ],
+          "ILE RPG programming": [
+            "documents/7.1/en/sc092507--1d4857768e.pdf"
+          ],
+          "ILE COBOL language": [
+            "documents/7.1/en/sc092539--05ca5b673e.pdf"
+          ],
+          "ILE COBOL programming": [
+            "documents/7.1/en/sc092540--0f8b6073c7.pdf"
+          ],
+          "CL concepts": [
+            "documents/7.1/en/rbam6--d85f49f167.pdf"
+          ],
+          "DDS": [
+            "documents/7.1/en/rbafpmst--89f03a74b0.pdf",
+            "documents/7.1/en/rzakbmst--355c50eb8e.pdf",
+            "documents/7.1/en/rzakc--8bbaa9c0d0.pdf",
+            "documents/7.1/en/rzakd--d04ba3cd58.pdf",
+            "documents/7.1/en/rzakemst--f63921f700.pdf"
+          ],
+          "Security reference": [
+            "documents/7.1/en/rzamv--703e95ad31.pdf",
+            "documents/7.1/en/sc415302--ef765fb097.pdf"
+          ]
+        },
+        "7.2": {
+          "SQL reference": [
+            "documents/7.2/en/rbafzpdf--37bf4839fa.pdf"
+          ],
+          "ILE RPG language": [
+            "documents/7.2/en/sc092508--7955c9bc0d.pdf"
+          ],
+          "ILE RPG programming": [
+            "documents/7.2/en/sc092507--2d1607e6cb.pdf"
+          ],
+          "ILE COBOL language": [
+            "documents/7.2/en/sc092539--c607a3796b.pdf"
+          ],
+          "ILE COBOL programming": [
+            "documents/7.2/en/sc092540--40a32cb0b3.pdf"
+          ],
+          "CL concepts": [
+            "documents/7.2/en/rbam6pdf--14a05dff12.pdf"
+          ],
+          "DDS": [
+            "documents/7.2/en/rbafppdf--427575d88c.pdf",
+            "documents/7.2/en/rzakbpdf--179c234db4.pdf",
+            "documents/7.2/en/rzakcpdf--8b98cf9760.pdf",
+            "documents/7.2/en/rzakdpdf--ff5430eca9.pdf",
+            "documents/7.2/en/rzakepdf--c2d8466272.pdf"
+          ],
+          "Security reference": [
+            "documents/7.2/en/rzamvpdf--9703c1e6e2.pdf",
+            "documents/7.2/en/sc415302--620307328f.pdf"
+          ]
+        },
+        "7.3": {
+          "SQL reference": [
+            "documents/7.3/en/rbafzpdf--e046f302b4.pdf"
+          ],
+          "ILE RPG language": [
+            "documents/7.3/en/sc092508--96ca32e5af.pdf"
+          ],
+          "ILE RPG programming": [
+            "documents/7.3/en/sc092507--8c03b40439.pdf"
+          ],
+          "ILE COBOL language": [
+            "documents/7.3/en/sc092539--bce865a0d8.pdf"
+          ],
+          "ILE COBOL programming": [
+            "documents/7.3/en/sc092540--1c351bb1c3.pdf"
+          ],
+          "CL concepts": [
+            "documents/7.3/en/rbam6pdf--bfefa4693d.pdf"
+          ],
+          "DDS": [
+            "documents/7.3/en/rbafppdf--e0722eac1a.pdf",
+            "documents/7.3/en/rzakbpdf--bf991e37f0.pdf",
+            "documents/7.3/en/rzakcpdf--fceb6cc72e.pdf",
+            "documents/7.3/en/rzakdpdf--d243f0d7e6.pdf",
+            "documents/7.3/en/rzakepdf--2a6bdde8cb.pdf"
+          ],
+          "Security reference": [
+            "documents/7.3/en/rzamvpdf--1508307cc0.pdf",
+            "documents/7.3/en/sc415302--3787e0dbd5.pdf"
+          ]
+        },
+        "7.4": {
+          "SQL reference": [
+            "documents/7.4/en/rbafzpdf--19cf73cbcb.pdf"
+          ],
+          "ILE RPG language": [
+            "documents/7.4/en/sc092508--ef26fc5010.pdf"
+          ],
+          "ILE RPG programming": [
+            "documents/7.4/en/sc092507--6f8c71690d.pdf"
+          ],
+          "ILE COBOL language": [
+            "documents/7.4/en/sc092539--cf9cbe440f.pdf"
+          ],
+          "ILE COBOL programming": [
+            "documents/7.4/en/sc092540--b508c4f47a.pdf"
+          ],
+          "CL concepts": [
+            "documents/7.4/en/rbam6pdf--2c650d0f9d.pdf"
+          ],
+          "DDS": [
+            "documents/7.4/en/rbafppdf--63ff703edd.pdf",
+            "documents/7.4/en/rzakbpdf--fcac277bcc.pdf",
+            "documents/7.4/en/rzakcpdf--3e67d9a30c.pdf",
+            "documents/7.4/en/rzakdpdf--3f40d571a5.pdf",
+            "documents/7.4/en/rzakepdf--183f1ba3eb.pdf"
+          ],
+          "Security reference": [
+            "documents/7.4/en/rzamvpdf--dd6317a4b8.pdf",
+            "documents/7.4/en/sc415302--f4c2ded24e.pdf"
+          ]
+        },
+        "7.5": {
+          "SQL reference": [
+            "documents/7.5/en/rbafzpdf--f0be6917b8.pdf"
+          ],
+          "ILE RPG language": [
+            "documents/7.5/en/sc092508--4e372b7984.pdf"
+          ],
+          "ILE RPG programming": [
+            "documents/7.5/en/sc092507--4be3c336ae.pdf"
+          ],
+          "ILE COBOL language": [
+            "documents/7.5/en/sc092539--0fac9fa80e.pdf"
+          ],
+          "ILE COBOL programming": [
+            "documents/7.5/en/sc092540--6a6be6feb2.pdf"
+          ],
+          "CL concepts": [
+            "documents/7.5/en/rbam6pdf--8dbac49a3a.pdf"
+          ],
+          "DDS": [
+            "documents/7.5/en/rbafppdf--cc2e33d1a1.pdf",
+            "documents/7.5/en/rzakbpdf--4178e4e9c6.pdf",
+            "documents/7.5/en/rzakcpdf--37f6c4b552.pdf",
+            "documents/7.5/en/rzakdpdf--e21c7a4fe8.pdf",
+            "documents/7.5/en/rzakepdf--2ae2b46310.pdf"
+          ],
+          "Security reference": [
+            "documents/7.5/en/rzamvpdf--598de17b98.pdf",
+            "documents/7.5/en/sc415302--7a3542d5b5.pdf"
+          ]
+        },
+        "7.6": {
+          "SQL reference": [
+            "documents/7.6/en/rbafzpdf--b9d3a9f030.pdf"
+          ],
+          "ILE RPG language": [
+            "documents/7.6/en/sc092508--74e52a10ad.pdf"
+          ],
+          "ILE RPG programming": [
+            "documents/7.6/en/sc092507--049ee865e7.pdf"
+          ],
+          "ILE COBOL language": [
+            "documents/7.6/en/sc092539--7a61f94b53.pdf"
+          ],
+          "ILE COBOL programming": [
+            "documents/7.6/en/sc092540--2194945177.pdf"
+          ],
+          "CL concepts": [
+            "documents/7.6/en/rbam6pdf--00a9b1d46f.pdf"
+          ],
+          "DDS": [
+            "documents/7.6/en/rbafppdf--6ae49206a8.pdf",
+            "documents/7.6/en/rzakbpdf--21e314ae8a.pdf",
+            "documents/7.6/en/rzakcpdf--86efcb48f6.pdf",
+            "documents/7.6/en/rzakdpdf--517fe98103.pdf",
+            "documents/7.6/en/rzakepdf--bb17402a36.pdf"
+          ],
+          "Security reference": [
+            "documents/7.6/en/rzamvpdf--e7dee495cd.pdf",
+            "documents/7.6/en/sc415302--3b0152c4b9.pdf"
+          ]
+        }
+      },
+      "integrity_errors": [],
+      "unavailable": [
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_76/rzahg/documentdownloadpermission.htm",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/FileNet/Work/Current/IDCMS1/STG/IBMi/v7r2m0f/rzahh/rzahhprintthis.htm",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/FileNet/Work/Current/IDCMS1/STG/IBMi/v7r2m0f/rzatg/rzatgprint.htm",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_72/rzaks/rzaksadjs.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_72/rzahx/rzahx.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_72/rzam8/rzam8.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/rzaks/rzaksadjs.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/rzahx/rzahx.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/rzam8/rzam8.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/rzahh/rzahhpdf.pdf",
+          "error": "curl: (22) The requested URL returned error: 404"
+        },
+        {
+          "url": "https://www.ibm.com/systems/resources/pcrm.pdf",
+          "error": "Expected pdf, received html"
+        },
+        {
+          "url": "https://publib.boulder.ibm.com/infocenter/powersys/v3r1m5/topic/iphbm/iphbm.pdf",
+          "error": "curl: (1) Protocol \"http\" not supported or disabled in libcurl"
+        },
+        {
+          "url": "https://publib.boulder.ibm.com/infocenter/powersys/v3r1m5/topic/iphat/iphat.pdf",
+          "error": "curl: (1) Protocol \"http\" not supported or disabled in libcurl"
+        }
+      ],
+      "discovery_warnings": [
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_76/db2watson/db2watsonkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_76/rzajr/rzajracsusing.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_75/db2watson/db2watsonkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_75/rzasf/rzasfkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_74/db2watson/db2watsonkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_74/rzasf/rzasfkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/FileNet/Work/Current/IDCMS1/STG/IBMi/v7r2m0f/rzasf/rzasfkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_72/FileNet/Work/Current/IDCMS1/STG/IBMi/v7r2m0f/rzahg/rzahgmtu.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_71/rzasf/rzasfkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_73/rzasf/rzasfkickoff.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        },
+        {
+          "url": "https://www.ibm.com/docs/en/ssw_ibm_i_73/rzahg/rzahgmtu.htm",
+          "warning": "No downloadable document link found; retained HTML snapshot only"
+        }
+      ]
+    },
+    {
+      "collection": "ibm-i-open-source",
+      "repositories": 11,
+      "pages": 92,
+      "verified_files": 736,
+      "integrity_errors": [],
+      "unique_file_paths": 736,
+      "unique_content_hashes": 719,
+      "pdfs": 0,
+      "unavailable": []
+    },
+    {
+      "collection": "ibm-i-community",
+      "repositories": 14,
+      "verified_files": 290,
+      "pdfs": 0,
+      "unique_file_paths": 290,
+      "unique_content_hashes": 287,
+      "integrity_errors": [],
+      "repositories_missing_license_files": [],
+      "unavailable": []
+    },
+    {
+      "collection": "enterprise-engineering-reference",
+      "repositories": 14,
+      "verified_files": 1473,
+      "pdfs": 1,
+      "unique_file_paths": 1473,
+      "unique_content_hashes": 1454,
+      "integrity_errors": [],
+      "repositories_missing_license_files": [],
+      "unavailable": []
+    },
+    {
+      "collection": "enterprise-web-reference",
+      "verified_files": 34,
+      "unique_file_paths": 34,
+      "unique_content_hashes": 34,
+      "pdfs": 5,
+      "integrity_errors": [],
+      "placeholders_excluded_from_ingestion": [
+        "https://www.unixodbc.org/doc/AdministratorManual/",
+        "https://www.unixodbc.org/doc/ProgrammerManual/"
+      ],
+      "unavailable": []
+    }
+  ],
+  "summary": {
+    "verified_file_records": 4263,
+    "unique_file_paths": 4256,
+    "unique_content_hashes": 4082,
+    "pdf_file_records": 1000,
+    "integrity_errors": 0,
+    "unavailable_source_urls": 13
+  },
+  "note": "Counts include duplicate file records and editions; unique paths/hashes are reported separately. PDF parsing is not semantic extraction validation. Catalog release is not necessarily publication release. This is not release certification, a license grant, malware scanning or application testing."
+}

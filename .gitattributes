@@ -1,0 +1,2 @@
+# Empty final TSV fields are meaningful, rather than trailing-space errors.
+training/reference-snapshots/**/INDEX.tsv text eol=lf whitespace=-blank-at-eol

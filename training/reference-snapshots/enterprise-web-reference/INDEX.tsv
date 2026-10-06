@@ -1,0 +1,35 @@
+category	title	path	status	source_url
+Connectivity	unixODBC administrator manual	pages/unixODBC-administrator-manual--7b3bf65925.html	downloaded	https://www.unixodbc.org/doc/AdministratorManual/
+Connectivity	unixODBC programmer manual	pages/unixODBC-programmer-manual--2ba0c1a69b.html	downloaded	https://www.unixodbc.org/doc/ProgrammerManual/
+Rights	SQLite copyright and public domain statement	pages/SQLite-copyright-and-public-domain-statement--d5e3ddbd17.html	downloaded	https://sqlite.org/copyright.html
+Connectivity	unixODBC user manual	pages/unixODBC-user-manual--381ccaaa40.html	downloaded	https://www.unixodbc.org/doc/UserManual/
+Retrieval	PostgreSQL full text search overview	pages/PostgreSQL-full-text-search-overview--f110ffbdbe.html	downloaded	https://www.postgresql.org/docs/current/textsearch.html
+Connectivity	Rust ODBC API guide	pages/Rust-ODBC-API-guide--2b622aeb7f.html	downloaded	https://docs.rs/odbc-api/latest/odbc_api/guide/
+Retrieval	SQLite FTS5	pages/SQLite-FTS5--e15c2248a5.html	downloaded	https://sqlite.org/fts5.html
+Authorization	PostgreSQL row security policies	pages/PostgreSQL-row-security-policies--e9846041ce.html	downloaded	https://www.postgresql.org/docs/current/ddl-rowsecurity.html
+Authorization	PostgreSQL privileges	pages/PostgreSQL-privileges--20f27b82b8.html	downloaded	https://www.postgresql.org/docs/current/ddl-priv.html
+Retrieval	PostgreSQL text search ranking and controls	pages/PostgreSQL-text-search-ranking-and-controls--776b7fed02.html	downloaded	https://www.postgresql.org/docs/current/textsearch-controls.html
+Text fidelity	Unicode normalization forms	pages/Unicode-normalization-forms--f3eb97bcc1.html	downloaded	https://www.unicode.org/reports/tr15/
+Security scanning	Semgrep supported languages	pages/Semgrep-supported-languages--8927032724.html	downloaded	https://docs.semgrep.dev/supported-languages
+Security scanning	Semgrep CE supported languages	pages/Semgrep-CE-supported-languages--9c88d64f12.html	downloaded	https://docs.semgrep.dev/semgrep-ce-languages
+Ingestion	Docling offline models and remote service controls	pages/Docling-offline-models-and-remote-service-controls--3e7d5680a5.html	downloaded	https://docling-project.github.io/docling/usage/advanced_options/
+On premises	Ollama local deployment and cloud disable controls	pages/Ollama-local-deployment-and-cloud-disable-controls--043ee5baa4.html	downloaded	https://docs.ollama.com/faq
+On premises	vLLM usage statistics and opt out	pages/vLLM-usage-statistics-and-opt-out--4304c70281.html	downloaded	https://docs.vllm.ai/en/latest/usage/usage_stats/
+On premises	Semgrep metrics and telemetry	pages/Semgrep-metrics-and-telemetry--8aeb0ed028.html	downloaded	https://docs.semgrep.dev/metrics
+Security scanning	Semgrep CE in CI	pages/Semgrep-CE-in-CI--fe4172ec58.html	downloaded	https://docs.semgrep.dev/deployment/oss-deployment
+Authorization	OAuth 2.0 security best current practice RFC 9700	pages/OAuth-2-0-security-best-current-practice-RFC-9700--4e6d674bf8.html	downloaded	https://www.rfc-editor.org/rfc/rfc9700.html
+On premises	vLLM security guidance	pages/vLLM-security-guidance--cb3b8abe0a.html	downloaded	https://docs.vllm.ai/en/latest/usage/security/
+Authorization	OpenID Connect Core 1.0	pages/OpenID-Connect-Core-1-0--cfd2790a54.html	downloaded	https://openid.net/specs/openid-connect-core-1_0.html
+Security scanning	Semgrep CLI reference	pages/Semgrep-CLI-reference--06e0693caa.html	downloaded	https://docs.semgrep.dev/cli-reference
+Governance	NIST Secure Software Development Practices for Generative AI	documents/NIST-Secure-Software-Development-Practices-for-Generative-AI--608fd8009b.pdf	downloaded	https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218A.pdf
+Governance	NIST Secure Software Development Framework	documents/NIST-Secure-Software-Development-Framework--a6cb7ee70f.pdf	downloaded	https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf
+Governance	NIST Generative AI Profile	documents/NIST-Generative-AI-Profile--b8df5c3760.pdf	downloaded	https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Governance	NIST AI Risk Management Framework	documents/NIST-AI-Risk-Management-Framework--a562dd579b.pdf	downloaded	https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf
+Supply chain	SLSA 1.2 build requirements	pages/SLSA-1-2-build-requirements--61af7cc368.html	downloaded	https://slsa.dev/spec/v1.2/build-requirements
+Supply chain	SLSA 1.2 specification overview	pages/SLSA-1-2-specification-overview--bfac836a08.html	downloaded	https://slsa.dev/spec/v1.2/
+Supply chain	SLSA 1.2 provenance	pages/SLSA-1-2-provenance--cadcb59633.html	downloaded	https://slsa.dev/spec/v1.2/provenance
+Internal analytics	OpenTelemetry Collector configuration	pages/OpenTelemetry-Collector-configuration--e040748ba2.html	downloaded	https://opentelemetry.io/docs/collector/configuration/
+Supply chain	SPDX 3.0.1 scope	pages/SPDX-3-0-1-scope--84d2582e73.html	downloaded	https://spdx.github.io/spdx-spec/v3.0.1/scope/
+Internal analytics	OpenTelemetry sensitive data handling	pages/OpenTelemetry-sensitive-data-handling--bdba945de0.html	downloaded	https://opentelemetry.io/docs/security/handling-sensitive-data/
+Internal analytics	OpenTelemetry security	pages/OpenTelemetry-security--0282e0af4a.html	downloaded	https://opentelemetry.io/docs/security/
+Supply chain	SPDX 3.0.1 specification	documents/SPDX-3-0-1-specification--79871e0896.pdf	downloaded	https://spdx.dev/wp-content/uploads/sites/31/2024/12/SPDX-3.0.1-1.pdf

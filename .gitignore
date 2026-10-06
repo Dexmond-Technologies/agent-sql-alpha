@@ -9,3 +9,8 @@ src-tauri/.env
 !fixtures/core-banking/banking-small.sqlite
 __pycache__/
 .venv-ibmi/
+.venv-tools/
+.venv-training/
+# Downloaded reference libraries and derived datasets are restored from sources.
+# Commit their source manifests under training/reference-snapshots instead.
+/training/TRAINING/

@@ -82,3 +82,12 @@ Choose **Qwen (private server)** to use a real vLLM endpoint serving Qwen3-Coder
 [`deployment/qwen`](deployment/qwen/compose.yaml) contains the pinned FP8 model/runtime configuration and a TLS gateway. [`tools/ibmi`](tools/ibmi/connector.py) supplies a real operator-run ODBC catalog exporter and bounded base-table reads. **Import IBM i catalog snapshot** enables Db2 for i drafting against the dated export. It does not add a live IBM i desktop driver; execution remains disabled for imported snapshots.
 
 See [`docs/QWEN_DEPLOYMENT.md`](docs/QWEN_DEPLOYMENT.md) for setup, prerequisites, actual endpoint measurement, evidence handling and unresolved production acceptance requirements. OS credential-store backends are now explicitly enabled; vault access still needs validation on each delivery platform. GPU performance, IBM i interoperability and IBM certification are not established by this repository upgrade.
+
+## AWS document preparation and Qwen training
+
+[`AWSrun.md`](AWSrun.md) records the next steps for the AWS training experiment.
+[`training/README.md`](training/README.md) describes a fresh-checkout setup command,
+pinned document-processing dependencies, and restoring reference collections from
+their publishers using the committed source manifests. The downloaded library and
+derived datasets remain local. IBM ingestion and a resumable model trainer are
+planned work; Ollama supplies inference and baseline testing.

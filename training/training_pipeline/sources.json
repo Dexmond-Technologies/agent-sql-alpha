@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "chunk_chars": 3000,
+  "overlap_chars": 240,
+  "minimum_chars": 120,
+  "maximum_file_bytes": 2097152,
+  "maximum_pdf_bytes": 52428800,
+  "split_seed": "sql-corpus-v1",
+  "sources": [
+    {"id": "sql-101", "directory": "SQL-101", "repository": "https://github.com/s-shemmee/SQL-101", "dialect": "mixed", "version": "unspecified", "include": ["README.md", "*.pdf"], "notice": "LICENSE", "license": "MIT"},
+    {"id": "sql-ultimate-course", "directory": "sql-ultimate-course", "repository": "https://github.com/DataWithBaraa/sql-ultimate-course", "dialect": "tsql", "version": "unspecified", "include": ["README.md", "docs/*.pdf", "scripts/**/*.sql", "scripts/*.sql"], "notice": "LICENSE", "license": "MIT"},
+    {"id": "postgresql", "directory": "postgresql-docs", "repository": "https://github.com/postgres/postgres", "dialect": "postgresql", "version": "detect-postgresql", "include": ["doc/src/sgml/**/*.sgml", "doc/src/sgml/*.sgml"], "notice": "COPYRIGHT", "license": "PostgreSQL"},
+    {"id": "sql-server-samples", "directory": "sql-server-samples", "repository": "https://github.com/microsoft/sql-server-samples", "dialect": "tsql", "version": "mixed", "include": ["samples/**/*.md", "samples/**/*.sql"], "notice": "license.txt", "license": "MIT"},
+    {"id": "mariadb", "directory": "mariadb-docs", "repository": "https://github.com/mariadb-corporation/mariadb-docs", "dialect": "mariadb", "version": "mixed", "include": ["server/**/*.md"], "notice": null, "license": "per-page-or-unspecified"},
+    {"id": "duckdb", "directory": "duckdb-docs", "repository": "https://github.com/duckdb/duckdb-web", "dialect": "duckdb", "version": "docs/current at recorded commit", "include": ["docs/current/**/*.md"], "notice": "LICENSE", "license": "MIT"},
+    {"id": "microsoft-tsql-reference", "directory": "microsoft-sql-docs", "url": "https://github.com/MicrosoftDocs/sql-docs/blob/live/docs/t-sql/language-reference.md", "dialect": "tsql", "version": "snapshot; revision unknown", "include": ["language-reference.md"], "notice": null, "license": "unrecorded"},
+    {"id": "microsoft-odbc", "directory": "microsoft-learn-odbc-sql", "url": "https://learn.microsoft.com/en-us/cpp/data/odbc/sql?view=msvc-170", "dialect": "odbc", "version": "msvc-170", "include": ["sql.md"], "notice": null, "license": "unrecorded"}
+  ]
+}

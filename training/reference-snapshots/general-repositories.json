@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "repositories": [
+    {
+      "directory": "SQL-101",
+      "url": "https://github.com/s-shemmee/SQL-101.git",
+      "commit": "05ec3bf9dfb137c4c2c4c3e348c93ca8c7a23974",
+      "sparse_directories": []
+    },
+    {
+      "directory": "sql-ultimate-course",
+      "url": "https://github.com/DataWithBaraa/sql-ultimate-course.git",
+      "commit": "7896d4a34c620ab8b73a7c607d86975cd7945642",
+      "sparse_directories": []
+    },
+    {
+      "directory": "postgresql-docs",
+      "url": "https://github.com/postgres/postgres.git",
+      "commit": "77f54eb07488341025073a370f6e381a6ee05e04",
+      "sparse_directories": [
+        "doc/src/sgml"
+      ]
+    },
+    {
+      "directory": "sql-server-samples",
+      "url": "https://github.com/microsoft/sql-server-samples.git",
+      "commit": "beaab06ef72831089ca80e5355d65e661fd19b26",
+      "sparse_directories": [
+        "samples/databases",
+        "samples/demos",
+        "samples/features",
+        "samples/tutorials"
+      ]
+    },
+    {
+      "directory": "mariadb-docs",
+      "url": "https://github.com/mariadb-corporation/mariadb-docs.git",
+      "commit": "1a89bd3d6cf9678ae16dd73d84bfa26024d9e24d",
+      "sparse_directories": [
+        "server/mariadb-quickstart-guides",
+        "server/reference/data-types",
+        "server/reference/sql-functions",
+        "server/reference/sql-statements",
+        "server/reference/sql-structure",
+        "server/server-usage/basics",
+        "server/server-usage/stored-routines",
+        "server/server-usage/triggers-events",
+        "server/server-usage/views"
+      ]
+    },
+    {
+      "directory": "duckdb-docs",
+      "url": "https://github.com/duckdb/duckdb-web.git",
+      "commit": "6d978b5fb075d31c66d02b88f2f3984dfbc49a40",
+      "sparse_directories": [
+        "docs/current"
+      ]
+    },
+    {
+      "directory": "COBOL-Guide",
+      "url": "https://github.com/mikeroyal/COBOL-Guide",
+      "commit": "587be2272bf3bac1bfeea718d718b5898b765b31",
+      "sparse_directories": []
+    }
+  ]
+}
