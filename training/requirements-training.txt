@@ -1,0 +1,9 @@
+# PyTorch 2.10.0 CUDA 12.8 is installed separately from its official wheel index.
+transformers==5.19.0
+peft==0.21.2
+trl==1.14.1
+accelerate==1.15.0
+bitsandbytes==0.50.2
+datasets==5.1.0
+# Tokenizers 0.23 requires Hub below 2.0.
+huggingface_hub==1.33.0

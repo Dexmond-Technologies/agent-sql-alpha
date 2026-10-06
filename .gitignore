@@ -14,3 +14,5 @@ __pycache__/
 # Downloaded reference libraries and derived datasets are restored from sources.
 # Commit their source manifests under training/reference-snapshots instead.
 /training/TRAINING/
+/.aws-setup/
+/models/

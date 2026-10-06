@@ -144,7 +144,8 @@ def main():
         report.write_text(json.dumps(failures, indent=2) + "\n")
         print(f"Unavailable sources: {len(failures)}; details: {report}", flush=True)
         if failures:
-            raise SystemExit("Library restored with unavailable sources; review the report and retry before training.")
+            print("Library restored with unavailable sources; review the report before training.")
+            raise SystemExit(3)
     print("Reference downloads finished. IBM extraction and model training remain separate steps.")
 
 

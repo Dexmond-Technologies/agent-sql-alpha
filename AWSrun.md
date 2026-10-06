@@ -8,21 +8,19 @@ The immediate priorities are IBM document ingestion, clean training datasets, an
 
 ## Set up a fresh AWS checkout
 
-On Ubuntu 24.04, connect as your normal SSH user with sudo access, verify the GPU with `nvidia-smi`, and run:
+On an Ubuntu 24.04 x86_64 NVIDIA GPU instance, connect as your normal SSH user and run this single command. Allocate at least 140 GiB free space; a larger persistent volume leaves room for checkpoints.
 
 ```bash
-git clone https://github.com/Dexmond-Technologies/agent-sql-alpha.git
-cd agent-sql-alpha
-bash scripts/aws/setup-training-host.sh --install-codex --install-ollama --download-references
-export PATH="$HOME/.local/bin:$PATH"
-codex login --device-auth
-ollama pull qwen3-coder:30b
-codex
+bash <(curl -fsSL https://raw.githubusercontent.com/Dexmond-Technologies/agent-sql-alpha/main/scripts/aws/install.sh)
 ```
 
-The setup script installs document-processing tools and optionally Codex/Ollama, runs tests, and restores reference documents from their publisher locations and recorded Git revisions. The public repository includes training code and source metadata; the approximately 3.4 GB downloaded library is retrieved separately by the script. Existing local collections remain intact. Retired URLs and changed web snapshots require review; see [training setup](training/README.md) for recovery details. If the download step reports unavailable sources, resolve or explicitly scope those gaps before training.
+The installer clones the repository, installs system/developer/document-processing tools, installs Codex and starts device-code login, installs Ollama and downloads `qwen3-coder:30b`, creates the CUDA PyTorch/Transformers/PEFT/TRL training environment, downloads the matching Hugging Face Qwen checkpoint, and restores reference documents. Finish the displayed browser login on your own computer; no separate login commands are required. Codex opens in the repository after installation.
 
-Model training is not started by this setup. A separate GPU trainer and Hugging Face training checkpoint are still required. Use Ollama for baseline inference, and stop it before training to release GPU memory. Node/Rust desktop build dependencies are not required for this console-based document workflow.
+Long installation stages run in a persistent tmux session with logs and saved completion markers. If a missing NVIDIA driver requires a reboot, the installer schedules one and resumes automatically through systemd. Reconnect over SSH and run the same command to view progress. Hardware/installation errors stop the failed stage for retry; unavailable publisher links are recorded separately and do not prevent the remaining tools from installing.
+
+The public repository includes training code and source metadata; the approximately 3.4 GB downloaded reference library is retrieved from its publishers. Existing local collections remain intact. Review retired URLs and changed snapshots before training. See [installer details](scripts/aws/README.md) and [training setup](training/README.md).
+
+Model training is not started by installation. The training libraries and checkpoint are installed, but IBM dataset preparation and a resumable training job still need implementing. Use Ollama for baseline inference, and stop it before training if it has loaded a model to release GPU memory.
 
 ## Current state
 

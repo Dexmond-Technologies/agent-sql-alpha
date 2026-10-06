@@ -7,20 +7,20 @@ See [AWSrun.md](../AWSrun.md) for the remaining IBM ingestion and Qwen training 
 ## Fresh Ubuntu 24.04 AWS checkout
 
 ```bash
-git clone https://github.com/Dexmond-Technologies/agent-sql-alpha.git
-cd agent-sql-alpha
-bash scripts/aws/setup-training-host.sh --install-codex --install-ollama --download-references
-export PATH="$HOME/.local/bin:$PATH"
-codex login --device-auth
-ollama pull qwen3-coder:30b
-codex
+bash <(curl -fsSL https://raw.githubusercontent.com/Dexmond-Technologies/agent-sql-alpha/main/scripts/aws/install.sh)
 ```
 
-Use a normal SSH user with sudo access. A working NVIDIA driver is required for
-GPU inference/training; the script checks it before installing Ollama. It does not
-install GPU drivers, download model weights automatically, or start model training.
-Without flags, it installs only the document-processing tools and runs their tests.
-Codex sign-in is interactive; use the displayed link on your own computer.
+Use a normal SSH user with passwordless sudo on Ubuntu 24.04 x86_64 and at least
+140 GiB free disk space. The script clones the repo, installs developer/document
+tools, Codex, Ollama, Qwen inference and training weights, and CUDA training
+libraries. It installs a missing NVIDIA driver and resumes after a required reboot.
+Complete the displayed Codex device login in your browser; Codex opens when setup
+finishes. Saved stages and tmux keep long downloads recoverable. Full details are
+in [the AWS installer guide](../scripts/aws/README.md).
+
+For a small document-only environment in an existing checkout, use
+`bash scripts/aws/setup-training-host.sh --tools-only`. Training jobs are not
+started automatically: the IBM dataset and resumable trainer remain planned work.
 
 ## Reference storage
 
@@ -40,8 +40,9 @@ the original bytes are always available. Microsoft reference pages are fetched
 from their recorded public source locations and are not revision-pinned.
 
 Unavailable links are recorded in `training/TRAINING/bootstrap-unavailable.json`.
-The bootstrap exits unsuccessfully if sources are unavailable so those gaps are
-reviewed explicitly. The original snapshot already records unavailable IBM links;
+The standalone reference bootstrap exits with code 3 if sources are unavailable.
+The full installer records that partial outcome and continues installing tools.
+The original snapshot already records unavailable IBM links;
 rerunning downloads may not recover retired publisher resources. Review each
 collection's manifest and the integrity report before selecting training data.
 
